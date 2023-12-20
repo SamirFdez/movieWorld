@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Lottie, { useLottie } from "lottie-react";
-import animationData from "../../assets/images/logoMovieWorld.json";
+import Logo from '../../assets/images/logo.png'
 
 export const Navbar = () => {
   const [responsiveNavbar, setResponsiveNavbar] = useState(false);
@@ -14,7 +13,7 @@ export const Navbar = () => {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={Logo}
             className="h-8"
             alt="Movie World Logo"
           />
