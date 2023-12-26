@@ -1,31 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import BannerFrozen from "../../../assets/images/frozen-3.jpg"
 
 export const HeroHome = () => {
+  const images = [
+    // BannerFrozen,
+    "https://flowbite.com/docs/images/carousel/carousel-1.svg",
+    "https://flowbite.com/docs/images/carousel/carousel-2.svg",
+    "https://flowbite.com/docs/images/carousel/carousel-3.svg",
+    "https://flowbite.com/docs/images/carousel/carousel-4.svg",
+    "https://flowbite.com/docs/images/carousel/carousel-5.svg",
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) =>
+        prevSlide === images.length - 1 ? 0 : prevSlide + 1
+      );
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
   return (
     <>
-      <div
-        className="hero min-h-screen"
-        style={{
-          backgroundImage:
-            "url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)",
-        }}
-      >
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-            <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
-            <button className="btn btn-primary">Get Started</button>
-          </div>
+      <div className="relative max-w-screen-xl overflow-hidden">
+        <div
+          className="flex transition-transform duration-300 ease-in-out transform"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {images.map((image, index) => (
+            <div key={index} className="w-full h-full flex-shrink-0">
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className="w-full h-full object-cover"
+                style={{ borderRadius: "inherit" }}
+              />
+            </div>
+          ))}
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
-          className="heroWave"
+          className="heroWave mt-5"
         >
           <path
             fill="#111827"
