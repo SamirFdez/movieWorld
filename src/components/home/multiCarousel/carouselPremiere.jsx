@@ -4,9 +4,8 @@ import Carousel from "react-multi-carousel";
 
 export const CarouselPremiere = () => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
-  const apiKey = "2a3fff17b6b526d16701df6517c4b678"
-  const params =
-    `/discover/movie?include_adult=true&include_video=true&language=en-US&page=1&sort_by=popularity.desc`;
+  const apiKey = "2a3fff17b6b526d16701df6517c4b678";
+  const params = `/discover/movie?include_adult=true&include_video=true&language=en-US&page=1&primary_release_year=2023&sort_by=popularity.desc`;
 
   const [premiereMovies, setPremiereMovies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -98,7 +97,7 @@ export const CarouselPremiere = () => {
           {premiereMovies?.map((premiereMovie, index) => (
             <div key={`premiere-movie-${index + 1}`}>
               <img
-              src={`https://image.tmdb.org/t/p/w500${premiereMovie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${premiereMovie.poster_path}`}
                 // src={`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&${premiereMovie.poster_path}`}
                 alt={premiereMovie.original_title}
               />
@@ -109,5 +108,3 @@ export const CarouselPremiere = () => {
     </>
   );
 };
-
-//https://api.themoviedb.org/3/movie/157336?api_key=API_KEY&append_to_response=videos,images
