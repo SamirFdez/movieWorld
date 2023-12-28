@@ -9,7 +9,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 w-full z-10">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 w-full z-10" style={{height: "70px"}}>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img

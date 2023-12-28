@@ -13,12 +13,16 @@ html {
 }
 
 /*--------------------------------------------------------------
->>> Hero
+>>> Hero Carousel
 ----------------------------------------------------------------*/
 
-.heroWave {
+/* .heroWave {
     position: absolute;
     bottom: 0;
+} */
+
+.flex.transition-transform {
+    transition: transform 1500ms ease-in-out;
 }
 
 /*--------------------------------------------------------------
@@ -33,4 +37,4 @@ Footer {
 
 .iconFooter {
     width: 1.2em;
-  }
+}
