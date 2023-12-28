@@ -1,6 +1,7 @@
 import React from "react";
-import { HeroHome } from "../components/home/hero/heroHome";
 import { Navbar } from "../components/navbar/navbar";
+import { HeroHome } from "../components/home/hero/heroHome";
+import { MultiCarousel } from "../components/home/multiCarousel/multiCarousel";
 import { Footer } from "../components/footer/footer";
 
 export const Home = () => {
@@ -9,6 +10,7 @@ export const Home = () => {
       <div className="App">
         <Navbar />
         <HeroHome />
+        <MultiCarousel />
         <Footer />
       </div>
     </>
