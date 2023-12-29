@@ -26,7 +26,7 @@ export const HeroHome = () => {
 
   return (
     <>
-      <div className="container mx-auto mt-2">
+      <div className="container mx-auto">
         <div
           className="relative max-w-screen-full overflow-hidden"
           style={{ marginTop: "70px" }}
@@ -40,8 +40,7 @@ export const HeroHome = () => {
                 <img
                   src={image}
                   alt={`Slide ${index + 1}`}
-                  className="w-full h-full object-fill"
-                  style={{ borderRadius: "1em", height: "480px" }}
+                  className="imgHeroHome w-full h-full object-fill"
                 />
               </div>
             ))}
