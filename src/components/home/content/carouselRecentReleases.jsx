@@ -45,7 +45,7 @@ export const CarouselRecentReleases = () => {
             {recentReleases?.map((recentMovies, index) => (
               <div
                 className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 mx-1 my-5"
-                key={`premiere-movie-${index + 1}`}
+                key={`recent-movie-${index + 1}`}
               >
                 <img
                   src={`https://image.tmdb.org/t/p/w400${recentMovies.poster_path}`}

@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 html {
-    background-color: #111827 !important;
+  background-color: #111827 !important;
 }
 
 .App {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /*--------------------------------------------------------------
@@ -21,49 +21,64 @@ html {
     bottom: 0;
 } */
 
-.imgHeroHome{
-    border-radius: 1em;
-    height: 460px;
+.imgHeroHome {
+  border-radius: 1em;
+  height: 500px;
 }
 
 .flex.transition-transform {
-    transition: transform 1500ms ease-in-out;
+  transition: transform 1500ms ease-in-out;
+}
+
+@media screen and (max-width: 1535px) {
+  .imgHeroHome {
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .imgHeroHome {
+    height: 380px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .imgHeroHome {
+    height: 350px;
+  }
+}
+
+@media screen and (max-width: 636px) {
+  .imgHeroHome {
+    height: 320px;
+  }
 }
 
 @media screen and (max-width: 431px) {
-    .imgHeroHome {
-      height: 300px;
-    }
+  .imgHeroHome {
+    height: 300px;
   }
+}
 
-  
-@media screen and (max-width: 636px) {
-    .imgHeroHome {
-      height: 320px;
-    }
-  }
 
-  @media screen and (max-width: 1024px) {
-    .imgHeroHome {
-      height: 350px;
-    }
-  }
 
-  @media screen and (max-width: 1535px) {
-    .imgHeroHome {
-      height: 380px;
-    }
-  }
+
+
+
+
+
+
+
 /*--------------------------------------------------------------
 >>> Footer
 ----------------------------------------------------------------*/
 
 Footer {
-    margin-top: auto;
-    justify-content: center;
-    background-color: #000000;
+  margin-top: auto;
+  justify-content: center;
+  background-color: #000000;
 }
 
 .iconFooter {
-    width: 1.2em;
+  width: 1.2em;
 }

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import BannerFrozen from "../../../assets/images/frozen-3.jpg";
-import BannerDeadPool from "../../../assets/images/deadpool-3.jpg";
+import BannerAvatar from "../../../assets/images/avatar.jpg";
+import BannerDespicable from "../../../assets/images/despicable-4.jpg";
 import BannerInsideOut from "../../../assets/images/inside-out-2.jpeg";
 import BannerGK from "../../../assets/images/GK.jpg";
 import BannerDune from "../../../assets/images/dune-2.jpg";
 
 export const HeroHome = () => {
   const images = [
-    BannerFrozen,
-    BannerDeadPool,
+    BannerAvatar,
+    BannerDespicable,
     BannerInsideOut,
     BannerGK,
     BannerDune,
