@@ -6,7 +6,6 @@ import { carouselOptions } from "../../../config/carouselOptions";
 export const CarouselUpcomingReleases = () => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
-  const apiKey = "2a3fff17b6b526d16701df6517c4b678";
   const params = `/discover/movie?include_adult=true&include_video=true&language=en-US&page=1&primary_release_year=2024&sort_by=popularity.desc`;
 
   const [upComingReleases, setUpComingReleases] = useState([]);

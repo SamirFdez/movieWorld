@@ -34,9 +34,9 @@ export const GenresList = () => {
 
   const genresToInclude = [
     "Action",
-    "Adventure",
     "Comedy",
     "Drama",
+    "Romance",
     "Thriller",
     "TV Movie",
   ];
