@@ -1,13 +1,9 @@
 import React from "react";
+import Lottie from "lottie-react";
 import NoDataAnimation from "../../assets/images/NoDataResults.json";
 
 export const NoDataFound = () => {
-  const animationOptions = {
-    animationData: NoDataAnimation,
-    loop: true,
-  };
 
-  //   const { noDataAnimationView } = useLottie(animationOptions);
 
   return (
     <>
@@ -15,7 +11,9 @@ export const NoDataFound = () => {
         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white tracking-wider">
           {"No Data Found :("}
         </h1>
-        <div className="lg:w-2/3 mx-auto"></div>
+        <div className="lg:w-2/3 mx-auto mt-5">
+            <Lottie animationData={NoDataAnimation} />
+        </div>
       </div>
     </>
   );
