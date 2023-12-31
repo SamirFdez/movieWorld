@@ -21,7 +21,11 @@ export const CardsData = ({ data }) => {
           />
           <div className="flex justify-between items-center">
             <h3 className="tracking-widest text-base text-sm font-medium title-font">
-              {data.release_date ? data.release_date : "date not found"}
+              {data.release_date
+                ? data.release_date
+                : !data.release_date
+                ? data.first_air_date
+                : "date not found"}
             </h3>
             <div className="flex items-center">
               <h4>
@@ -42,9 +46,9 @@ export const CardsData = ({ data }) => {
             </div>
           </div>
           <h2 className="text-lg text-white font-medium title-font mb-4 titleCard">
-            {data.title}
+            {data.title ? data.title : data.name}
           </h2>
-          <p className="leading-relaxed text-base overviewCard">
+          <p className="leading-relaxed text-pretty text-base overviewCard">
             {data.overview !== "" ? data.overview : "overview not available"}
           </p>
         </div>
