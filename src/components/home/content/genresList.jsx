@@ -50,7 +50,7 @@ export const GenresList = () => {
       {loading
         ? null
         : filteredGenres?.map((genres, index) => (
-            <div key={`genreList-${index}`} style={{ marginTop: "30px" }}>
+            <div key={`genreList-${index}`} style={{ marginTop: "10px" }}>
               <h3 className="text-3xl font-bold dark:text-white tracking-wider">
                 {genres.name}
               </h3>

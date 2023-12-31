@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
 
-export const Navbar = () => {
+export const Navbar = ({ wordSearch, setWordSearch }) => {
   const [responsiveNavbar, setResponsiveNavbar] = useState(false);
   const currentPage = window.location.pathname;
-  const navigate = useNavigate();
 
   const toggleResponsiveNavbar = () => {
     setResponsiveNavbar(!responsiveNavbar);
+  };
+
+  const handleInputSearch = (event) => {
+    setWordSearch(event.target.value);
   };
 
   return (
@@ -17,7 +19,10 @@ export const Navbar = () => {
       style={{ height: "70px" }}
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <a
+          href="/#"
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+        >
           <img src={Logo} className="h-8" alt="Movie World Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Movie World
@@ -73,6 +78,8 @@ export const Navbar = () => {
               id="search-navbar"
               className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search..."
+              value={wordSearch}
+              onChange={handleInputSearch}
             />
           </div>
           <button
@@ -147,7 +154,7 @@ export const Navbar = () => {
               </a>
             </li>
             <li>
-            <a
+              <a
                 href="/movies"
                 className={
                   currentPage === "/movies"
@@ -160,7 +167,7 @@ export const Navbar = () => {
               </a>
             </li>
             <li>
-            <a
+              <a
                 href="/series"
                 className={
                   currentPage === "/series"

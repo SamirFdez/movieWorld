@@ -36,7 +36,7 @@ export const CarouselUpcomingReleases = () => {
   return (
     <>
       {loading ? null : (
-        <div style={{ marginTop: "20px" }}>
+        <div style={{ marginTop: "10px" }}>
           <h3 className="text-3xl font-bold dark:text-white tracking-wider">
             Upcoming Releases
           </h3>
