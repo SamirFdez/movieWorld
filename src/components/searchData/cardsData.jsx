@@ -20,7 +20,7 @@ export const CardsData = ({ data }) => {
             alt={data.title}
           />
           <div className="flex justify-between items-center">
-            <h3 className="tracking-widest text-base text-sm font-medium title-font">
+            <h3 className="tracking-widest text-sm font-medium title-font">
               {data.release_date
                 ? data.release_date
                 : !data.release_date

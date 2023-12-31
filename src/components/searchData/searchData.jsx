@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CardsData } from "./cardsData";
 import { NoDataFound } from "./noDataFound";
+import { Loading } from "../utils/loading";
 
 export const SearchData = ({ wordSearch }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
@@ -49,7 +50,9 @@ export const SearchData = ({ wordSearch }) => {
 
   return (
     <>
-      {loading ? null : (
+      {loading ? (
+          <Loading />
+      ) : (
         <div className="container mx-auto" style={{ marginTop: "70px" }}>
           {dataSearchedMovies?.length !== 0 ||
           dataSearchedSeries?.length !== 0 ? (
@@ -64,9 +67,11 @@ export const SearchData = ({ wordSearch }) => {
                   <CardsData data={dataMovies} key={`movieSearched-${index}`} />
                 ))}
                 {dataSearchedSeries?.map((dataSeries, index) => (
-                  <CardsData data={dataSeries} key={`serieeSearched-${index}`} />
-                  ))}
-
+                  <CardsData
+                    data={dataSeries}
+                    key={`serieeSearched-${index}`}
+                  />
+                ))}
               </div>
             </>
           ) : (
