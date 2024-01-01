@@ -3,10 +3,10 @@ import axios from "axios";
 import Carousel from "react-multi-carousel";
 import { carouselOptions } from "../../../config/carouselOptions";
 
-export const CarouselUpcomingReleases = () => {
+export const CarouselUpcomingReleases = ({ goToInfoView }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
-  const params = `/discover/movie?include_adult=true&include_video=true&language=en-US&page=1&primary_release_year=2024&sort_by=popularity.desc`;
+  const params = `/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&primary_release_year=2024&sort_by=popularity.desc`;
 
   const [upComingReleases, setUpComingReleases] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,8 +43,9 @@ export const CarouselUpcomingReleases = () => {
           <Carousel {...carouselOptions}>
             {upComingReleases?.map((upComingMovies, index) => (
               <div
-                className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 mx-1 my-5"
+                className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-5"
                 key={`upcoming-movie-${index + 1}`}
+                onClick={() => goToInfoView(upComingMovies.id)}
               >
                 <img
                   src={`https://image.tmdb.org/t/p/w400${upComingMovies.poster_path}`}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CarouselByGenres } from "./carouselByGenres";
 
-export const GenresList = () => {
+export const GenresList = ({ goToInfoView }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
   const params = "/genre/movie/list?language=en";
@@ -54,7 +54,10 @@ export const GenresList = () => {
               <h3 className="text-3xl font-bold dark:text-white tracking-wider">
                 {genres.name}
               </h3>
-              <CarouselByGenres genres={genres.id} />
+              <CarouselByGenres
+                genres={genres.id}
+                goToInfoView={goToInfoView}
+              />
             </div>
           ))}
     </>

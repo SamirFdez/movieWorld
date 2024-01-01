@@ -7,7 +7,7 @@ import { Loading } from "../utils/loading";
 export const SearchData = ({ wordSearch }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
-  const paramsMovies = `/search/movie?query=${wordSearch}&include_adult=true&language=en-US&page=1`;
+  const paramsMovies = `/search/movie?query=${wordSearch}&include_adult=false&language=en-US&page=1`;
   const paramsSeries = `/search/tv?query=${wordSearch}&include_adult=false&language=en-US&page=1`;
 
   const [dataSearchedMovies, setDataSearchedMovies] = useState([]);
