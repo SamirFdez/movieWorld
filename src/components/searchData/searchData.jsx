@@ -4,15 +4,17 @@ import { CardsData } from "./cardsData";
 import { NoDataFound } from "./noDataFound";
 import { Loading } from "../utils/loading";
 
-export const SearchData = ({ wordSearch }) => {
+export const SearchData = ({ newSearch }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
-  const paramsMovies = `/search/movie?query=${wordSearch}&include_adult=false&language=en-US&page=1`;
-  const paramsSeries = `/search/tv?query=${wordSearch}&include_adult=false&language=en-US&page=1`;
+  const paramsMovies = `/search/movie?query=${newSearch}&include_adult=false&language=en-US&page=1`;
+  const paramsSeries = `/search/tv?query=${newSearch}&include_adult=false&language=en-US&page=1`;
 
   const [dataSearchedMovies, setDataSearchedMovies] = useState([]);
   const [dataSearchedSeries, setDataSearchedSeries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [dataFoundMovie, setDataFoundMovie] = useState();
+  const [dataFoundSerie, setDataFoundSerie] = useState();
 
   const config = {
     headers: {
@@ -25,6 +27,7 @@ export const SearchData = ({ wordSearch }) => {
     try {
       const response = await axios.get(baseUrl + paramsMovies, config);
       setDataSearchedMovies(response.data.results);
+      setDataFoundMovie(response.data.total_results)
       setLoading(false);
     } catch (error) {
       console.error("Error:", error);
@@ -36,6 +39,7 @@ export const SearchData = ({ wordSearch }) => {
     try {
       const response = await axios.get(baseUrl + paramsSeries, config);
       setDataSearchedSeries(response.data.results);
+      setDataFoundSerie(response.data.total_results)
       setLoading(false);
     } catch (error) {
       console.error("Error:", error);
@@ -46,38 +50,42 @@ export const SearchData = ({ wordSearch }) => {
   useEffect(() => {
     getDataSearchedMovies();
     getDataSearchedSeries();
-  }, [wordSearch]);
+  }, [newSearch]);
 
   return (
     <>
       {loading ? (
-          <Loading />
+        <Loading />
       ) : (
-        <div className="container mx-auto" style={{ marginTop: "70px" }}>
-          {dataSearchedMovies?.length !== 0 ||
-          dataSearchedSeries?.length !== 0 ? (
-            <>
-              <div className="flex flex-col text-center w-full">
-                <h1 className="sm:text-3xl text-2xl font-medium title-font text-white tracking-wider">
-                  Search results:
-                </h1>
-              </div>
-              <div className="flex flex-wrap m-4">
-                {dataSearchedMovies?.map((dataMovies, index) => (
-                  <CardsData data={dataMovies} key={`movieSearched-${index}`} />
-                ))}
-                {dataSearchedSeries?.map((dataSeries, index) => (
-                  <CardsData
-                    data={dataSeries}
-                    key={`serieeSearched-${index}`}
-                  />
-                ))}
-              </div>
-            </>
+        <>
+          {dataFoundMovie !== 0 || dataFoundSerie !== 0 ? (
+            <div className="container mx-auto" style={{ marginTop: "70px" }}>
+              <>
+                <div className="flex flex-col text-center w-full">
+                  <h1 className="sm:text-3xl text-2xl font-medium title-font text-white tracking-wider">
+                    Search results:
+                  </h1>
+                </div>
+                <div className="flex flex-wrap m-4">
+                  {dataSearchedMovies?.map((dataMovies, index) => (
+                    <CardsData
+                      data={dataMovies}
+                      key={`movieSearched-${index}`}
+                    />
+                  ))}
+                  {dataSearchedSeries?.map((dataSeries, index) => (
+                    <CardsData
+                      data={dataSeries}
+                      key={`serieeSearched-${index}`}
+                    />
+                  ))}
+                </div>
+              </>
+            </div>
           ) : (
             <NoDataFound />
           )}
-        </div>
+        </>
       )}
     </>
   );

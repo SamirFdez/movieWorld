@@ -10,7 +10,7 @@ export const MultiCarousel = () => {
   const navigate = useNavigate();
 
   const goToInfoView = (id) => {
-    navigate(`/resource/${id}`);
+    navigate(`/movie/${id}`);
   };
 
   return (
