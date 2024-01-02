@@ -21,10 +21,7 @@ export const InfoViewMovie = () => {
 
         {newSearch === "" ? (
           <>
-            <div style={{ marginTop: "70px" }}>
-              <h1>HOLA MI AMORR</h1>
-              <InfoContentMovie />
-            </div>
+            <InfoContentMovie />
           </>
         ) : (
           <SearchData newSearch={newSearch} />

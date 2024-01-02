@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CarouselByGenres } from "./carouselByGenres";
+import { homeGenresMovies } from "../../../config/homeGenresMovies";
 
 export const GenresList = ({ goToInfoView }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
@@ -32,17 +33,8 @@ export const GenresList = ({ goToInfoView }) => {
     getGenresList();
   }, []);
 
-  const genresToInclude = [
-    "Action",
-    "Comedy",
-    "Drama",
-    "Romance",
-    "Thriller",
-    "TV Movie",
-  ];
-
   const filteredGenres = genresList?.filter((genre) =>
-    genresToInclude.includes(genre.name)
+    homeGenresMovies.includes(genre.name)
   );
 
   return (

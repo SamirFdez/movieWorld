@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import { MovieContent } from "./movieContent";
+import { Loading } from "../utils/loading";
 
 export const InfoContentMovie = () => {
+  const { id } = useParams();
+  const params = `/movie/${id}?language=en-US`;
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
 
@@ -15,12 +20,11 @@ export const InfoContentMovie = () => {
     },
   };
 
-  const getMovieData = async (movieID) => {
-    const params = `/movie/${movieID}?language=en-US`;
+  const getMovieData = async () => {
     try {
       const response = await axios.get(baseUrl + params, config);
       setMovieData(response.data);
-      console.log(response.data)
+      console.log(response.data);
       setLoading(false);
     } catch (error) {
       console.error("Error:", error);
@@ -29,12 +33,18 @@ export const InfoContentMovie = () => {
   };
 
   useEffect(() => {
-    const currentPage = window.location.pathname;
-    const movieID = currentPage.substring(currentPage.lastIndexOf("/") + 1)
-    getMovieData(movieID);
+    setTimeout(() => {
+      getMovieData();
+    }, 1000);
   }, []);
 
-  return <>
-  
-  </>;
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <MovieContent movieData={movieData} />
+      )}
+    </>
+  );
 };
