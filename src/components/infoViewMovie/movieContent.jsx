@@ -22,7 +22,7 @@ export const MovieContent = ({ movieData, movieVideo }) => {
   return (
     <>
       <div className="container p-5 mx-auto" style={{ marginTop: "70px" }}>
-        <div className="lg:w-4/5 mx-auto flex flex-wrap">
+        <div className="lg:w-4/5 mx-auto flex flex-wrap items-center">
           <div className="lg:w-2/3 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
               MOVIE
@@ -49,7 +49,7 @@ export const MovieContent = ({ movieData, movieVideo }) => {
                 }
                 onClick={() => setInformationView(1)}
               >
-                Reviews
+                Preview
               </a>
               <a
                 className={
@@ -76,12 +76,12 @@ export const MovieContent = ({ movieData, movieVideo }) => {
           </div>
           <img
             alt={movieData.original_title}
-            className="lg:w-1/3 w-full lg:h-auto object-cover object-top rounded hidden lg:block"
+            className=" lg:w-1/3 w-full lg:h-4/5 rounded hidden lg:block"
             src={`https://image.tmdb.org/t/p/w400${movieData.poster_path}`}
           />
           <img
             alt={movieData.original_title}
-            className="lg:w-1/2 w-full lg:h-auto object-cover object-top rounded lg:hidden"
+            className="w-full h-full rounded lg:hidden"
             src={`https://image.tmdb.org/t/p/w400${movieData.backdrop_path}`}
           />
         </div>

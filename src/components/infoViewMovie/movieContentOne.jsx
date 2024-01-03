@@ -8,11 +8,11 @@ export const MovieContentOne = ({ movieData, convertDuration }) => {
           ? movieData.overview
           : "Overview not available."}
       </p>
-      <div className="flex border-t border-gray-800 py-3">
+      <div className="flex border-t border-gray-800 py-2">
         <span className="text-gray-500">Status</span>
         <span className="ml-auto text-white">{movieData.status}</span>
       </div>
-      <div className="flex border-t border-gray-800 py-3">
+      <div className="flex border-t border-gray-800 py-2">
         <span className="text-gray-500">Release Date</span>
         <span
           className={
@@ -26,14 +26,14 @@ export const MovieContentOne = ({ movieData, convertDuration }) => {
             : "date not found"}
         </span>
       </div>
-      <div className="flex border-t border-gray-800 py-3">
+      <div className="flex border-t border-gray-800 py-2">
         <span className="text-gray-500">Duration</span>
         <span className="ml-auto text-white tracking-wider">
           {convertDuration(movieData.runtime)}
         </span>
       </div>
 
-      <div className="flex border-t border-b border-gray-800 py-3">
+      <div className="flex border-t border-b border-gray-800 py-2">
         <span className="text-gray-500">Rating</span>
         <div className=" flex justify-between items-center ml-auto">
           <svg
@@ -71,4 +71,3 @@ export const MovieContentOne = ({ movieData, convertDuration }) => {
     </>
   );
 };
- 

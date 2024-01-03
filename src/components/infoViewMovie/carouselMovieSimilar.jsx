@@ -29,7 +29,7 @@ export const CarouselMovieSimilar = ({ movieSimilar }) => {
                   <img
                     src={`https://image.tmdb.org/t/p/w400${moviesSimilar.poster_path}`}
                     alt={moviesSimilar.original_title}
-                    className="rounded-lg  h-60  lg:h-80 object-fill object-top"
+                    className="rounded-lg w-full h-64 object-fill"
                   />
                 </div>
               ))}
