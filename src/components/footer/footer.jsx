@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from '../../assets/images/logo.png'
+import Logo from "../../assets/images/logo.png";
 import { TbWorld, TbBrandGithub, TbBrandLinkedin } from "react-icons/tb";
 
 export const Footer = () => {
@@ -10,11 +10,7 @@ export const Footer = () => {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <a href="https://flowbite.com/" className="flex items-center">
-                <img
-                  src={Logo}
-                  className="h-8 me-3"
-                  alt="FlowBite Logo"
-                />
+                <img src={Logo} className="h-8 me-3" alt="FlowBite Logo" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                   Movie World
                 </span>
@@ -35,13 +31,22 @@ export const Footer = () => {
                       React + Vite
                     </a>
                   </li>
-                  <li>
+                  <li className="mb-4">
                     <a
                       href="https://tailwindcss.com/"
                       target="_blank"
                       className="hover:underline"
                     >
                       Tailwind CSS
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://developer.themoviedb.org/docs"
+                      target="_blank"
+                      className="hover:underline"
+                    >
+                      API Resource
                     </a>
                   </li>
                 </ul>
@@ -51,6 +56,15 @@ export const Footer = () => {
                   Follow us
                 </h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                  <li className="mb-4">
+                    <a
+                      href="https://portfolio-samirfdez.vercel.app/"
+                      target="_blank"
+                      className="hover:underline"
+                    >
+                      Portfolio
+                    </a>
+                  </li>
                   <li className="mb-4">
                     <a
                       href="https://github.com/SamirFdez"
