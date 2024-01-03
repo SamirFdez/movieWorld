@@ -41,19 +41,21 @@ export const CarouselUpcomingReleases = ({ goToInfoView }) => {
             Upcoming Releases
           </h3>
           <Carousel {...carouselOptions}>
-            {upComingReleases?.map((upComingMovies, index) => (
-              <div
-                className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-5"
-                key={`upcoming-movie-${index + 1}`}
-                onClick={() => goToInfoView(upComingMovies.id)}
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w400${upComingMovies.poster_path}`}
-                  alt={upComingMovies.original_title}
-                  className="rounded-lg"
-                />
-              </div>
-            ))}
+            {upComingReleases
+              ?.filter((movie) => movie.poster_path !== null)
+              ?.map((upComingMovies, index) => (
+                <div
+                  className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-5"
+                  key={`upcoming-movie-${index + 1}`}
+                  onClick={() => goToInfoView(upComingMovies.id)}
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w400${upComingMovies.poster_path}`}
+                    alt={upComingMovies.original_title}
+                    className="rounded-lg"
+                  />
+                </div>
+              ))}
           </Carousel>
         </div>
       )}

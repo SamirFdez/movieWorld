@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { MovieContentOne } from "./movieContentOne";
+import { MovieContentTwo } from "./movieContentTwo";
 
-export const MovieContent = ({ movieData }) => {
+export const MovieContent = ({ movieData, movieVideo }) => {
   const [informationView, setInformationView] = useState(0);
 
   const convertDuration = (duration) => {
@@ -20,7 +21,7 @@ export const MovieContent = ({ movieData }) => {
 
   return (
     <>
-      <div className="container p-5 mx-auto" style={{marginTop: "70px"}}>
+      <div className="container p-5 mx-auto" style={{ marginTop: "70px" }}>
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <div className="lg:w-2/3 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
@@ -67,7 +68,11 @@ export const MovieContent = ({ movieData }) => {
                 movieData={movieData}
                 convertDuration={convertDuration}
               />
-            ) : informationView === 1 ? <h1>Aqui no se que poner, saludos </h1> : <h1>Aqui va el reparto jeje salu2</h1>}
+            ) : informationView === 1 ? (
+              <MovieContentTwo movieVideo={movieVideo} />
+            ) : (
+              <h1>Aqui va el reparto jeje salu2</h1>
+            )}
           </div>
           <img
             alt={movieData.original_title}

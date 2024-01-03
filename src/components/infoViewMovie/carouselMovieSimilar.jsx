@@ -20,7 +20,7 @@ export const CarouselMovieSimilar = ({ movieSimilar }) => {
           <Carousel {...carouselOptions}>
             {movieSimilar
               ?.filter((movie) => movie.poster_path !== null)
-              .map((moviesSimilar, index) => (
+              ?.map((moviesSimilar, index) => (
                 <div
                   className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-5"
                   key={`movies-by-genre-${index + 1}`}

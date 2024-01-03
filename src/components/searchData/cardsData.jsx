@@ -20,10 +20,18 @@ export const CardsData = ({ data }) => {
             alt={data.title}
           />
           <div className="flex justify-between items-center">
-            <h3 className="tracking-widest text-sm font-medium title-font">
+            <h3
+              className={
+                data.release_date && data.first_air_date !== ""
+                  ? "tracking-widest text-sm font-medium title-font"
+                  : "text-sm font-medium title-font"
+              }
+            >
               {data.release_date
-                ? data.release_date
-                : !data.release_date
+                ? data.release_date !== ""
+                  ? data.release_date
+                  : "date not found"
+                : data.first_air_date
                 ? data.first_air_date
                 : "date not found"}
             </h3>
@@ -37,11 +45,16 @@ export const CardsData = ({ data }) => {
               >
                 <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
               </svg>
-              <h4 className="tracking-wider ms-1">
+              <h4
+                className={
+                  data.vote_average % 1 !== 0
+                    ? "tracking-widest text-sm font-medium title-font ms-1"
+                    : "text-sm font-medium title-font ms-1"
+                }
+              >
                 {data.vote_average % 1 !== 0
-                  ? Math.floor(data.vote_average * 10) / 10
-                  : data.vote_average}
-                /10
+                  ? Math.floor(data.vote_average * 10) / 10 + "/10"
+                  : "No rating yet"}
               </h4>
             </div>
           </div>
@@ -49,7 +62,7 @@ export const CardsData = ({ data }) => {
             {data.title ? data.title : data.name}
           </h2>
           <p className="leading-relaxed text-pretty text-base overviewCard">
-            {data.overview !== "" ? data.overview : "overview not available"}
+            {data.overview !== "" ? data.overview : "Overview not available"}
           </p>
         </div>
       </div>
