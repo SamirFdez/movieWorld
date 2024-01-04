@@ -10,7 +10,7 @@ export const MovieContentTwo = ({ movieVideo }) => {
           {filterTrailer.length ? (
             <iframe
               className="w-full"
-              height="250"
+              height="350"
               src={`https://www.youtube.com/embed/${filterTrailer[0].key}?si=AS_0erHOhgJhvk_d`}
               title="YouTube video player"
               frameBorder="0"

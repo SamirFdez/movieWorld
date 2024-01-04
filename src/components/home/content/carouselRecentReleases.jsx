@@ -46,7 +46,7 @@ export const CarouselRecentReleases = ({ goToInfoView }) => {
           <Carousel {...carouselOptions}>
             {recentReleases?.map((recentMovies, index) => (
               <div
-                className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-5"
+                className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-4"
                 key={`recent-movie-${index + 1}`}
                 onClick={() => goToInfoView(recentMovies.id)}
               >

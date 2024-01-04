@@ -45,7 +45,7 @@ export const CarouselUpcomingReleases = ({ goToInfoView }) => {
               ?.filter((movie) => movie.poster_path !== null)
               ?.map((upComingMovies, index) => (
                 <div
-                  className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-5"
+                  className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-4"
                   key={`upcoming-movie-${index + 1}`}
                   onClick={() => goToInfoView(upComingMovies.id)}
                 >

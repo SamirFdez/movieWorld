@@ -114,7 +114,7 @@ export const Footer = () => {
             <a
               href="https://portfolio-samirfdez.vercel.app/"
               target="_blank"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-500 transition-all duration-500 hover:scale-110 hover:text-gray-900 dark:hover:text-white ms-5"
               style={{ fontSize: "20px" }}
             >
               <TbWorld />
@@ -123,7 +123,7 @@ export const Footer = () => {
             <a
               href="https://github.com/SamirFdez"
               target="_blank"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-500 transition-all duration-500 hover:scale-110 hover:text-gray-900 dark:hover:text-white ms-5"
               style={{ fontSize: "20px" }}
             >
               <TbBrandGithub />
@@ -132,7 +132,7 @@ export const Footer = () => {
             <a
               href="https://linkedin.com/in/samirfdez"
               target="_blank"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-500 transition-all duration-500 hover:scale-110 hover:text-gray-900 dark:hover:text-white ms-5"
               style={{ fontSize: "20px" }}
             >
               <TbBrandLinkedin />

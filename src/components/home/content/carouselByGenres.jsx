@@ -39,7 +39,7 @@ export const CarouselByGenres = ({ genres, goToInfoView }) => {
         <Carousel {...carouselOptions}>
           {genresMovies?.map((moviesByGenre, index) => (
             <div
-              className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-5"
+              className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-4"
               key={`movies-by-genre-${index + 1}`}
               onClick={() => goToInfoView(moviesByGenre.id)}
             >

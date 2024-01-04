@@ -67,11 +67,12 @@ export const InfoContentMovie = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     setTimeout(() => {
       getMovieData();
       getMovieSimilar();
       getMovieVideo();
-    }, 1000);
+    }, 750);
   }, [id]);
 
   return (
