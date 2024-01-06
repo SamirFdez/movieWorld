@@ -30,7 +30,6 @@ export const MovieContentThree = ({ movieCredits }) => {
               </div>
             </div>
           ))}
-          <img src={NoProfilePhoto} alt="" />
         </div>
       ) : (
         <p className="leading-relaxed mb-4 py-2">
