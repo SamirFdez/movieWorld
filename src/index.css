@@ -84,7 +84,7 @@ html {
   height: 640px;
 }
 
-.imgCard{
+.imgCard {
   height: 372px;
 }
 
@@ -106,9 +106,30 @@ html {
     height: auto;
   }
 
-  .imgCard{
+  .imgCard {
     height: auto;
   }
+}
+
+/*--------------------------------------------------------------
+>>> CreditsComponent
+----------------------------------------------------------------*/
+.creditsComponent {
+  max-height: 21.5em;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.creditsComponent::-webkit-scrollbar {
+  width: 2px;
+  border-radius: 2px;
+  /* background-color: #6B7280; */
+  background-color: transparent;
+}
+
+.creditsComponent::-webkit-scrollbar-thumb {
+  background-color: #1D4ED8;
+  border-radius: 2px;
 }
 
 /*--------------------------------------------------------------

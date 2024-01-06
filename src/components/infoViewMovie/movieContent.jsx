@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { MovieContentOne } from "./movieContentOne";
 import { MovieContentTwo } from "./movieContentTwo";
+import { MovieContentThree } from "./movieContentThree";
 
-export const MovieContent = ({ movieData, movieVideo }) => {
+export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
   const [informationView, setInformationView] = useState(0);
 
   const convertDuration = (duration) => {
@@ -22,7 +23,7 @@ export const MovieContent = ({ movieData, movieVideo }) => {
   return (
     <>
       <div className="container p-5 mx-auto" style={{ marginTop: "70px" }}>
-        <div className="lg:w-4/5 mx-auto flex flex-wrap items-center">
+        <div className="lg:w-4/5 mx-auto flex flex-wrap items-start">
           <div className="lg:w-2/3 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
               MOVIE
@@ -59,7 +60,7 @@ export const MovieContent = ({ movieData, movieVideo }) => {
                 }
                 onClick={() => setInformationView(2)}
               >
-                Credits
+                Cast
               </a>
             </div>
 
@@ -71,12 +72,12 @@ export const MovieContent = ({ movieData, movieVideo }) => {
             ) : informationView === 1 ? (
               <MovieContentTwo movieVideo={movieVideo} />
             ) : (
-              <h1>Aqui va el reparto jeje salu2</h1>
+              <MovieContentThree movieCredits={movieCredits} />
             )}
           </div>
           <img
             alt={movieData.original_title}
-            className=" lg:w-1/3 w-full lg:h-4/5 rounded hidden lg:block"
+            className="lg:w-1/3 w-full lg:h-4/5 rounded hidden lg:flex  items-center justify-center"
             src={`https://image.tmdb.org/t/p/w400${movieData.poster_path}`}
           />
           <img
