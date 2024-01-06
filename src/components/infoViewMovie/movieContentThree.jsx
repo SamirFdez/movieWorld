@@ -33,7 +33,7 @@ export const MovieContentThree = ({ movieCredits }) => {
         </div>
       ) : (
         <p className="leading-relaxed mb-4 py-2">
-          Video not available at the moment.
+          The cast of the film is not available at the moment.
         </p>
       )}
     </>
