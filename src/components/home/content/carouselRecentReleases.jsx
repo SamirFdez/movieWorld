@@ -7,8 +7,8 @@ import { Loading } from "../../utils/loading";
 export const CarouselRecentReleases = ({ goToInfoView }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
-  const params = `/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&primary_release_year=2023&primary_release_date.gte=2023-12&sort_by=popularity.desc`;
 
+  const [date, setDate] = useState("2024");
   const [recentReleases, setRecentReleases] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,7 +21,11 @@ export const CarouselRecentReleases = ({ goToInfoView }) => {
 
   const getRecentMovies = async () => {
     try {
-      const response = await axios.get(baseUrl + params, config);
+      const response = await axios.get(
+        baseUrl +
+          `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_date.lte=${date}&sort_by=popularity.desc`,
+        config
+      );
       setRecentReleases(response.data.results);
       setLoading(false);
     } catch (error) {
@@ -30,9 +34,24 @@ export const CarouselRecentReleases = ({ goToInfoView }) => {
     }
   };
 
+  const getDate = () => {
+    const fullDate = new Date();
+    const year = fullDate.getFullYear();
+    const getMonth = fullDate.getMonth() + 1;
+    const month = getMonth > 9 ? getMonth : `0${getMonth}`;
+    const getDay = fullDate.getDate();
+    const day = getDay > 9 ? getDay : `0${getDay}`;
+
+    setDate(`${year}-${month}-${day}`);
+  };
+
+  useEffect(() => {
+    getDate();
+  }, []);
+
   useEffect(() => {
     getRecentMovies();
-  }, []);
+  }, [date]);
 
   return (
     <>

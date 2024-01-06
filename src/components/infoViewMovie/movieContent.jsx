@@ -35,8 +35,8 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
               <a
                 className={
                   informationView === 0
-                    ? "flex-grow text-white border-b-2 border-white-700 py-2 text-lg px-1 cursor-pointer"
-                    : "flex-grow border-b-2 border-gray-800 py-2 text-lg px-1 cursor-pointer"
+                    ? "flex-grow text-white border-b-2 border-white py-2 text-lg px-1 cursor-pointer"
+                    : "flex-grow border-b-2 border-gray-800 transition-all duration-500 hover:text-white hover:border-white py-2 text-lg px-1 cursor-pointer"
                 }
                 onClick={() => setInformationView(0)}
               >
@@ -45,8 +45,8 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
               <a
                 className={
                   informationView === 1
-                    ? "flex-grow text-white border-b-2 border-white-700 py-2 text-lg px-1 cursor-pointer"
-                    : "flex-grow border-b-2 border-gray-800 py-2 text-lg px-1 cursor-pointer"
+                    ? "flex-grow text-white border-b-2 border-white py-2 text-lg px-1 cursor-pointer"
+                    : "flex-grow border-b-2 border-gray-800 transition-all duration-500 hover:text-white hover:border-white py-2 text-lg px-1 cursor-pointer"
                 }
                 onClick={() => setInformationView(1)}
               >
@@ -55,8 +55,8 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
               <a
                 className={
                   informationView === 2
-                    ? "flex-grow text-white border-b-2 border-white-700 py-2 text-lg px-1 cursor-pointer"
-                    : "flex-grow border-b-2 border-gray-800 py-2 text-lg px-1 cursor-pointer"
+                    ? "flex-grow text-white border-b-2 border-white py-2 text-lg px-1 cursor-pointer"
+                    : "flex-grow border-b-2 border-gray-800 transition-all duration-500 hover:text-white hover:border-white py-2 text-lg px-1 cursor-pointer"
                 }
                 onClick={() => setInformationView(2)}
               >

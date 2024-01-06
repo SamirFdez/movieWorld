@@ -6,7 +6,7 @@ import { carouselOptions } from "../../../config/carouselOptions";
 export const CarouselByGenres = ({ genres, goToInfoView }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
-  const params = `/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc&with_genres=`;
+  const params = `/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=vote_count.desc&with_genres=`;
 
   const [genresMovies, setGenresMovies] = useState([]);
   const [loading, setLoading] = useState(true);

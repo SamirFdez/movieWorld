@@ -6,8 +6,8 @@ import { carouselOptions } from "../../../config/carouselOptions";
 export const CarouselUpcomingReleases = ({ goToInfoView }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
-  const params = `/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&primary_release_year=2024&sort_by=popularity.desc`;
 
+  const [date, setDate] = useState("2024");
   const [upComingReleases, setUpComingReleases] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +20,11 @@ export const CarouselUpcomingReleases = ({ goToInfoView }) => {
 
   const getUpComingMovies = async () => {
     try {
-      const response = await axios.get(baseUrl + params, config);
+      const response = await axios.get(
+        baseUrl +
+          `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_date.gte=${date}&sort_by=popularity.desc`,
+        config
+      );
       setUpComingReleases(response.data.results);
       setLoading(false);
     } catch (error) {
@@ -29,9 +33,24 @@ export const CarouselUpcomingReleases = ({ goToInfoView }) => {
     }
   };
 
+  const getDate = () => {
+    const fullDate = new Date();
+    const year = fullDate.getFullYear();
+    const getMonth = fullDate.getMonth() + 1;
+    const month = getMonth > 9 ? getMonth : `0${getMonth}`;
+    const getDay = fullDate.getDate();
+    const day = getDay > 9 ? getDay : `0${getDay}`;
+
+    setDate(`${year}-${month}-${day}`);
+  };
+
+  useEffect(() => {
+    getDate();
+  }, []);
+
   useEffect(() => {
     getUpComingMovies();
-  }, []);
+  }, [date]);
 
   return (
     <>
