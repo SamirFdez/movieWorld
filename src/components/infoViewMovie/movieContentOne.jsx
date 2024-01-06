@@ -58,10 +58,10 @@ export const MovieContentOne = ({ movieData, convertDuration }) => {
           </h4>
         </div>
       </div>
-      <div className="flex mt-4">
+      <div className="flex flex-wrap mt-3">
         {movieData?.genres?.map((genresmovie) => (
           <span
-            className="badge dark:bg-blue-700 text-white text-base p-3 mr-2"
+            className="badge dark:bg-blue-700 text-white text-base p-3 my-1 mr-2"
             key={genresmovie.id}
           >
             {genresmovie.name}
