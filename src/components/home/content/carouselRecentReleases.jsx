@@ -4,7 +4,7 @@ import Carousel from "react-multi-carousel";
 import { carouselOptions } from "../../../config/carouselOptions";
 import { Loading } from "../../utils/loading";
 
-export const CarouselRecentReleases = ({ goToInfoView }) => {
+export const CarouselRecentReleases = ({ goToInfoViewMovie }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
 
@@ -67,7 +67,7 @@ export const CarouselRecentReleases = ({ goToInfoView }) => {
               <div
                 className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-4"
                 key={`recent-movie-${index + 1}`}
-                onClick={() => goToInfoView(recentMovies.id)}
+                onClick={() => goToInfoViewMovie(recentMovies.id)}
               >
                 <img
                   src={`https://image.tmdb.org/t/p/w400${recentMovies.poster_path}`}

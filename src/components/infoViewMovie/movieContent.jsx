@@ -19,7 +19,7 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
     }
     return totalDuration;
   };
-
+ 
   return (
     <>
       <div className="container p-5 mx-auto" style={{ marginTop: "70px" }}>
@@ -63,7 +63,6 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
                 Cast
               </a>
             </div>
-
             {informationView === 0 ? (
               <MovieContentOne
                 movieData={movieData}
@@ -77,7 +76,7 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
           </div>
           <img
             alt={movieData.original_title}
-            className="lg:w-1/3 w-full lg:h-4/5 rounded hidden lg:flex  items-center justify-center"
+            className="lg:w-1/3 w-full lg:h-4/5 rounded hidden lg:flex items-center justify-center"
             src={`https://image.tmdb.org/t/p/w400${movieData.poster_path}`}
           />
           <img

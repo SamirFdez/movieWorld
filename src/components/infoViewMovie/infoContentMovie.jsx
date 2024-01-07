@@ -7,12 +7,13 @@ import { Loading } from "../utils/loading";
 
 export const InfoContentMovie = () => {
   const { id } = useParams();
+  const baseUrl = import.meta.env.VITE_APP_BASEURL;
+  const auth = import.meta.env.VITE_APP_AUTH;
   const paramsMovieData = `/movie/${id}?language=en-US`;
   const paramsMovieVideo = `/movie/${id}/videos?language=en-US`;
   const paramsMovieCredits = `/movie/${id}/credits?language=en-US`;
   const paramsMovieSimilar = `/movie/${id}/similar?language=en-US&page=1`;
-  const baseUrl = import.meta.env.VITE_APP_BASEURL;
-  const auth = import.meta.env.VITE_APP_AUTH;
+
 
   const [movieData, setMovieData] = useState([]);
   const [movieVideo, setMovieVideo] = useState([]);

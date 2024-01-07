@@ -13,7 +13,6 @@ export const MovieContentTwo = ({ movieVideo }) => {
               height="350"
               src={`https://www.youtube.com/embed/${filterTrailer[0].key}?si=AS_0erHOhgJhvk_d`}
               title="YouTube video player"
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>

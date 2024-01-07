@@ -3,7 +3,7 @@ import axios from "axios";
 import { CarouselByGenres } from "./carouselByGenres";
 import { homeGenresMovies } from "../../../config/homeGenresMovies";
 
-export const GenresList = ({ goToInfoView }) => {
+export const GenresList = ({ goToInfoViewMovie }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
   const params = "/genre/movie/list?language=en";
@@ -48,7 +48,7 @@ export const GenresList = ({ goToInfoView }) => {
               </h3>
               <CarouselByGenres
                 genres={genres.id}
-                goToInfoView={goToInfoView}
+                goToInfoViewMovie={goToInfoViewMovie}
               />
             </div>
           ))}

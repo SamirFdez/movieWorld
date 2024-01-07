@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../components/navbar/navbar";
-import { PeopleContent } from "../components/infoViewPeople/peopleContent";
+import { InfoPeopleContent } from "../components/infoViewPeople/infoPeopleContent";
 import { SearchData } from "../components/searchData/searchData";
 import { Footer } from "../components/footer/footer";
 
-export const infoViewPeople = () => {
+export const InfoViewPeople = () => {
   const [wordSearch, setWordSearch] = useState("");
   const [newSearch, setNewSearch] = useState("");
 
@@ -21,7 +21,7 @@ export const infoViewPeople = () => {
 
         {newSearch === "" ? (
           <>
-            <PeopleContent />
+            <InfoPeopleContent />
           </>
         ) : (
           <SearchData newSearch={newSearch} />

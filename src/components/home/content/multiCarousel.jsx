@@ -9,16 +9,16 @@ import "react-multi-carousel/lib/styles.css";
 export const MultiCarousel = () => {
   const navigate = useNavigate();
 
-  const goToInfoView = (id) => {
+  const goToInfoViewMovie = (id) => {
     navigate(`/movie/${id}`);
   };
 
   return (
     <>
       <div className="container mx-auto">
-        <CarouselRecentReleases goToInfoView={goToInfoView} />
-        <CarouselUpcomingReleases goToInfoView={goToInfoView} />
-        <GenresList goToInfoView={goToInfoView} />
+        <CarouselRecentReleases goToInfoViewMovie={goToInfoViewMovie} />
+        <CarouselUpcomingReleases goToInfoViewMovie={goToInfoViewMovie} />
+        <GenresList goToInfoViewMovie={goToInfoViewMovie} />
       </div>
     </>
   );

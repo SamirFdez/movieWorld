@@ -1,15 +1,23 @@
 import React from "react";
 import NoProfilePhoto from "../../assets/images/noProfilePhoto.png";
+import { useNavigate } from "react-router-dom";
 
 export const MovieContentThree = ({ movieCredits }) => {
+  const navigate = useNavigate();
+
+  const goToInfoViewPeople = (id) => {
+    navigate(`/people/${id}`);
+  };
+
   return (
     <>
       {movieCredits?.length > 0 ? (
-        <div className="flex flex-wrap -m-2 creditsComponent">
+        <div className="flex flex-wrap creditsComponent p-2">
           {movieCredits?.map((moviePeople, index) => (
             <div
               className="p-2 lg:w-1/2 md:w-1/2 w-full transition-all duration-700 hover:scale-105 cursor-pointer"
               key={index}
+              onClick={() => goToInfoViewPeople(moviePeople.id)}
             >
               <div className="h-full flex items-center border-gray-200 hover:border-blue-700 border p-4 rounded-lg">
                 <img

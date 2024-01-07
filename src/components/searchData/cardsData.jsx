@@ -2,6 +2,8 @@ import React from "react";
 import NoImagenFound from "../../assets/images/imageNotFound.jpg";
 
 export const CardsData = ({ data }) => {
+
+  const keloke = "hola"
   return (
     <>
       <div className="xl:w-1/4 lg:w-1/3 md:w-1/2 sm:w-1/2 p-4">
@@ -27,13 +29,14 @@ export const CardsData = ({ data }) => {
                   : "text-sm font-medium title-font"
               }
             >
-              {data.release_date
+              {/* {data.release_date
                 ? data.release_date !== ""
                   ? data.release_date
                   : "date not found"
                 : data.first_air_date
                 ? data.first_air_date
-                : "date not found"}
+                : "date not found"} */}
+                {keloke}
             </h3>
             <div className="flex items-center">
               <svg

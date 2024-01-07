@@ -3,7 +3,7 @@ import axios from "axios";
 import Carousel from "react-multi-carousel";
 import { carouselOptions } from "../../../config/carouselOptions";
 
-export const CarouselByGenres = ({ genres, goToInfoView }) => {
+export const CarouselByGenres = ({ genres, goToInfoViewMovie }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
   const params = `/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=vote_count.desc&with_genres=`;
@@ -41,7 +41,7 @@ export const CarouselByGenres = ({ genres, goToInfoView }) => {
             <div
               className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-4"
               key={`movies-by-genre-${index + 1}`}
-              onClick={() => goToInfoView(moviesByGenre.id)}
+              onClick={() => goToInfoViewMovie(moviesByGenre.id)}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w400${moviesByGenre.poster_path}`}
