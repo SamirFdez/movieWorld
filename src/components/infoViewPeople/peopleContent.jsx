@@ -2,11 +2,9 @@ import React from "react";
 import NoProfilePhoto from "../../assets/images/noProfilePhoto.png";
 
 export const PeopleContent = ({ peopleData }) => {
-  const formatDate = (birthday) => {
-    if (!birthday) return "Birthday not available";
+  const formatDate = (date) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
-    const [year, month, day] = birthday?.split("-") || [];
-    if (!year || !month || !day) return "Invalid date";
+    const [year, month, day] = date?.split("-") || [];
     const formattedDate = new Date(year, month - 1, day).toLocaleDateString(
       "en-US",
       options
@@ -40,7 +38,9 @@ export const PeopleContent = ({ peopleData }) => {
             <div className="flex border-t border-gray-800 py-2">
               <span className="text-gray-500">Birthday</span>
               <span className="ml-auto text-white">
-                {formatDate(peopleData?.birthday)}
+                {peopleData.birthday !== null
+                  ? formatDate(peopleData?.birthday)
+                  : "Birthday not found"}
               </span>
             </div>
             <div className="flex border-t border-gray-800 py-2">
@@ -48,14 +48,14 @@ export const PeopleContent = ({ peopleData }) => {
               <span className="ml-auto text-white">
                 {peopleData.place_of_birth !== null
                   ? peopleData.place_of_birth
-                  : "Place of birth not available"}
+                  : "Birthplace not found"}
               </span>
             </div>
             {peopleData.deathday !== null ? (
               <div className="flex border-t border-gray-800 py-2">
                 <span className="text-gray-500">Place of birth</span>
                 <span className="ml-auto text-white">
-                  {peopleData.deathday}
+                  {formatDate(peopleData?.deathday)}
                 </span>
               </div>
             ) : null}
