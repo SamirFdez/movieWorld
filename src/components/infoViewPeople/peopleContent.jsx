@@ -1,9 +1,12 @@
 import React from "react";
+import NoProfilePhoto from "../../assets/images/noProfilePhoto.png";
 
 export const PeopleContent = ({ peopleData }) => {
   const formatDate = (birthday) => {
+    if (!birthday) return "Birthday not available";
     const options = { year: "numeric", month: "long", day: "numeric" };
-    const [year, month, day] = birthday?.split("-");
+    const [year, month, day] = birthday?.split("-") || [];
+    if (!year || !month || !day) return "Invalid date";
     const formattedDate = new Date(year, month - 1, day).toLocaleDateString(
       "en-US",
       options
@@ -17,8 +20,14 @@ export const PeopleContent = ({ peopleData }) => {
         <div className="lg:w-4/5 mx-auto flex flex-wrap items-start justify-center">
           <img
             alt={peopleData.name}
-            className="flex items-center justify-center rounded-3xl w-auto h-80 object-cover lg:h-96 lg:w-auto"
-            src={`https://image.tmdb.org/t/p/w400${peopleData.profile_path}`}
+            className={`flex items-center justify-center rounded-3xl w-auto h-80 object-cover lg:h-96 ${
+              peopleData.profile_path !== null ? "lg:w-auto" : "lg:w-1/3"
+            }`}
+            src={
+              peopleData.profile_path !== null
+                ? `https://image.tmdb.org/t/p/w400${peopleData.profile_path}`
+                : NoProfilePhoto
+            }
           />
           <div className="lg:w-2/3 w-full py-6 lg:px-10">
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
@@ -37,7 +46,9 @@ export const PeopleContent = ({ peopleData }) => {
             <div className="flex border-t border-gray-800 py-2">
               <span className="text-gray-500">Place of birth</span>
               <span className="ml-auto text-white">
-                {peopleData.place_of_birth}
+                {peopleData.place_of_birth !== null
+                  ? peopleData.place_of_birth
+                  : "Place of birth not available"}
               </span>
             </div>
             {peopleData.deathday !== null ? (
