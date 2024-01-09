@@ -1,65 +1,75 @@
-import React, { useState, useEffect } from "react";
-import BannerAvatar from "../../../assets/images/avatar.jpg";
-import BannerDespicable from "../../../assets/images/despicable-4.jpg";
-import BannerInsideOut from "../../../assets/images/inside-out-2.jpeg";
-import BannerGK from "../../../assets/images/GK.jpg";
-import BannerDune from "../../../assets/images/dune-2.jpg";
+import React from "react";
 
-export const HeroHome = () => {
-  const images = [
-    BannerAvatar,
-    BannerDespicable,
-    BannerInsideOut,
-    BannerGK,
-    BannerDune,
-  ];
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [images.length]);
+export const HeroHome = ({ dataMovieHero, genresMovie }) => {
+  const filteredGenres = genresMovie?.filter((genre) =>
+    dataMovieHero?.genre_ids?.includes(genre.id)
+  );
 
   return (
     <>
-      <div className="container mx-auto">
-        <div
-          className="relative max-w-screen-full overflow-hidden"
-          style={{ marginTop: "70px" }}
-        >
-          <div
-            className="flex transition-transform duration-300 ease-in-out transform"
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-          >
-            {images.map((image, index) => (
-              <div key={index} className="w-full h-full flex-shrink-0">
-                <img
-                  src={image}
-                  alt={`Slide ${index + 1}`}
-                  className="imgHeroHome w-full h-full object-fill"
+      <div
+        className="hero relative bg-cover bg-no-repeat block lg:hidden"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(https://image.tmdb.org/t/p/w400${dataMovieHero.poster_path})`,
+          marginTop: "70px",
+          minHeight: "calc(70vh - 70px)",
+        }}
+      >
+        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-content text-left text-neutral-content absolute bottom-0 left-0 p-6">
+          <div className="max-w-md">
+            <h1 className="mb-3 text-3xl text-white font-bold">
+              {dataMovieHero.title}
+            </h1>
+            <div className="flex flex-wrap mb-5">
+              {filteredGenres?.map((dataGenre) => (
+                <span
+                  className="badge bg-transparent border-slate-300 text-slate-300 text-base p-3 my-1 mr-2"
+                  style={{backdropFilter: "blur(8px)"}}
+                  key={dataGenre.id}
+                >
+                  {dataGenre.name}
+                </span>
+              ))}
+            </div>
+
+            <button className="btn bg-gray-900 text-white hover:bg-blue-700 mr-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 inline-block mr-2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
                 />
-              </div>
-            ))}
+              </svg>
+              Play
+            </button>
+            <button className="btn bg-gray-900 text-white hover:bg-blue-700">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 inline-block mr-2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                />
+              </svg>
+              More Info
+            </button>
           </div>
         </div>
       </div>
     </>
   );
 };
-{
-  /* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
-          className="heroWave"
-        >
-          <path
-            fill="#111827"
-            fillOpacity="1"
-            d="M0,224L21.8,224C43.6,224,87,224,131,218.7C174.5,213,218,203,262,208C305.5,213,349,235,393,234.7C436.4,235,480,213,524,170.7C567.3,128,611,64,655,37.3C698.2,11,742,21,785,48C829.1,75,873,117,916,149.3C960,181,1004,203,1047,229.3C1090.9,256,1135,288,1178,250.7C1221.8,213,1265,107,1309,74.7C1352.7,43,1396,85,1418,106.7L1440,128L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z"
-          ></path>
-        </svg> */
-}

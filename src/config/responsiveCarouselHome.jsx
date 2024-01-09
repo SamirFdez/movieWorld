@@ -1,4 +1,4 @@
-export const responsiveCarousel = {
+export const responsiveCarouselHome = {
   desktop: {
     breakpoint: {
       max: 4000,
