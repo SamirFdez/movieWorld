@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import NoProfilePhoto from "../../assets/images/noProfilePhoto.png";
 
 export const PeopleContent = ({ peopleData }) => {
+  const [readMore, setReadMore] = useState(true);
+
+  const biographyNotComplete = peopleData?.biography.slice(0, 240);
+  const biographyComplete = peopleData?.biography;
+
   const formatDate = (date) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     const [year, month, day] = date?.split("-") || [];
@@ -34,7 +39,31 @@ export const PeopleContent = ({ peopleData }) => {
             <h1 className="text-white text-3xl title-font font-medium">
               {peopleData.name}
             </h1>
-            <p className="leading-relaxed py-2">{peopleData.biography}</p>
+            <p className="leading-relaxed py-2">
+              {peopleData.biography !== "" ? (
+                biographyComplete.length - biographyNotComplete.length > 44 ? (
+                  readMore ? (
+                    <>
+                      {biographyNotComplete + "... "}
+                      <a className="link" onClick={() => setReadMore(false)}>
+                        read more
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      {biographyComplete + " "}
+                      <a className="link" onClick={() => setReadMore(true)}>
+                        hide
+                      </a>
+                    </>
+                  )
+                ) : (
+                  biographyComplete
+                )
+              ) : (
+                "Biography not available."
+              )}
+            </p>
             <div className="flex border-t border-gray-800 py-2">
               <span className="text-gray-500">Birthday</span>
               <span className="ml-auto text-white">

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { HeroMobile } from "./heroMobile";
+import { HeroDesktop } from "./heroDesktop";
 import axios from "axios";
-import { HeroHome } from "./heroHome";
-import { CarouselHome } from "./carouselHome";
+
 import { Loading } from "../../utils/loading";
 
 export const HeroContent = () => {
@@ -61,23 +62,10 @@ export const HeroContent = () => {
         <Loading />
       ) : (
         <>
-          {/* <div
-            className="hero relative bg-cover bg-no-repeat hidden lg:block"
-            style={{
-              backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url(https://image.tmdb.org/t/p/w400${heroBackdrop})`,
-              marginTop: "70px",
-              minHeight: "calc(80vh - 70px)",
-            }}
-          >
-            <HeroHome
-              heroId={heroId}
-              heroTitle={heroTitle}
-              heroGenres={heroGenres}
-            />
-          </div> */}
-
-          <HeroHome dataMovieHero={dataMovieHero} genresMovie={genresMovie} />
-          <CarouselHome
+          <HeroMobile />
+          <HeroDesktop
+            dataMovieHero={dataMovieHero}
+            genresMovie={genresMovie}
             dataHero={dataHero}
             positionHero={positionHero}
             setPositionHero={setPositionHero}

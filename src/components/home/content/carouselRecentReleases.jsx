@@ -55,10 +55,8 @@ export const CarouselRecentReleases = ({ goToInfoViewMovie }) => {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <div style={{ marginTop: "20px" }}>
+      {loading ? null : (
+        <div className="mt-3">
           <h3 className="text-3xl font-bold dark:text-white tracking-wider">
             Recent Releases
           </h3>

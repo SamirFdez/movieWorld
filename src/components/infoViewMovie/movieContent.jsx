@@ -23,7 +23,7 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
   return (
     <>
       <div className="container p-5 mx-auto" style={{ marginTop: "70px" }}>
-        <div className="lg:w-4/5 mx-auto flex flex-wrap items-start">
+        <div className="lg:w-4/5 mx-auto flex flex-wrap items-center">
           <div className="lg:w-2/3 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
               MOVIE

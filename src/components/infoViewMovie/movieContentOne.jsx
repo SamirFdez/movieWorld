@@ -1,12 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const MovieContentOne = ({ movieData, convertDuration }) => {
+  const [readMore, setReadMore] = useState(true);
+
+  const overviewNotComplete = movieData?.overview.slice(0, 240);
+  const overviewComplete = movieData?.overview;
+
   return (
     <>
       <p className="leading-relaxed mb-4 py-2">
-        {movieData.overview !== ""
-          ? movieData.overview
-          : "Overview not available."}
+        {movieData.overview !== "" ? (
+          overviewComplete.length - overviewNotComplete.length > 44 ? (
+            readMore ? (
+              <>
+                {overviewNotComplete + "... "}
+                <a className="link" onClick={() => setReadMore(false)}>
+                  read more
+                </a>
+              </>
+            ) : (
+              <>
+                {overviewComplete + " "}
+                <a className="link" onClick={() => setReadMore(true)}>
+                  hide
+                </a>
+              </>
+            )
+          ) : (
+            overviewComplete
+          )
+        ) : (
+          "Overview not available."
+        )}
       </p>
       <div className="flex border-t border-gray-800 py-2">
         <span className="text-gray-500">Status</span>

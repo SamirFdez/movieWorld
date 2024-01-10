@@ -16,11 +16,6 @@ html {
 >>> Hero Carousel
 ----------------------------------------------------------------*/
 
-/* .heroWave {
-    position: absolute;
-    bottom: 0;
-} */
-
 .imgHeroHome {
   border-radius: 1em;
   height: 500px;
@@ -58,6 +53,22 @@ html {
   .imgHeroHome {
     height: 300px;
   }
+}
+
+.titleHero {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.overviewHero {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
 }
 
 /*--------------------------------------------------------------
