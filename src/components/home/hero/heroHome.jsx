@@ -13,6 +13,7 @@ export const HeroHome = ({ dataMovieHero, genresMovie }) => {
           backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(https://image.tmdb.org/t/p/w400${dataMovieHero.poster_path})`,
           marginTop: "70px",
           minHeight: "calc(70vh - 70px)",
+          zIndex: 1,
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>

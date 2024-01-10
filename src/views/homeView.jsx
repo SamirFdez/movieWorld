@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../components/navbar/navbar";
-import { HeroContent } from "../components/home/hero/heroContent";
+import { HeroSliders } from "../components/home/hero/heroSlider";
+// import { HeroContent } from "../components/home/hero/heroContent";
 import { MultiCarousel } from "../components/home/content/multiCarousel";
 import { SearchData } from "../components/searchData/searchData";
 import { Footer } from "../components/footer/footer";
@@ -22,7 +23,7 @@ export const Home = () => {
 
         {newSearch === "" ? (
           <>
-            <HeroContent />
+            <HeroSliders />
             <MultiCarousel />
           </>
         ) : (
