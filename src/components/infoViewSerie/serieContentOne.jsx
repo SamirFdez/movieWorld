@@ -122,12 +122,12 @@ export const SerieContentOne = ({ serieData }) => {
         </div>
       </div>
       <div className="flex flex-wrap mt-3">
-        {serieData?.genres?.map((genresmovie) => (
+        {serieData?.genres?.map((genresSerie) => (
           <span
             className="badge dark:bg-blue-700 text-white text-base p-3 my-1 mr-2"
-            key={genresmovie.id}
+            key={genresSerie.id}
           >
-            {genresmovie.name}
+            {genresSerie.name}
           </span>
         ))}
       </div>

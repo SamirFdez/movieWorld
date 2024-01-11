@@ -12,12 +12,12 @@ export const InfoContentSerie = () => {
   const paramsSerieData = `/tv/${id}?language=en-US`;
   const paramsSerieVideo = `/tv/${id}/videos?language=en-US`;
   const paramsSerieCredits = `/tv/${id}/season/1/credits?language=en-US`;
-  const paramsMovieSimilar = `/movie/${id}/similar?language=en-US&page=1`;
+  const paramsSerieRecommendation = `/tv/${id}/recommendations?language=en-US&page=1`;
 
   const [serieData, setSerieData] = useState({});
   const [serieVideo, setSerieVideo] = useState([]);
   const [serieCredits, setSerieCredits] = useState([]);
-  const [serieSimilar, setSerieSimilar] = useState([]);
+  const [serieRecommendation, setSerieRecommendation] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const config = {
@@ -60,11 +60,26 @@ export const InfoContentSerie = () => {
     }
   };
 
+  const getSerieRecommendation = async () => {
+    try {
+      const response = await axios.get(
+        baseUrl + paramsSerieRecommendation,
+        config
+      );
+      setSerieRecommendation(response.data.results);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
+      setLoading(true);
+    }
+  };
+
   useEffect(() => {
     setTimeout(() => {
       getSerieData();
       getSerieVideo();
       getSerieCredits();
+      getSerieRecommendation();
     }, 1000);
   }, []);
 
@@ -74,6 +89,7 @@ export const InfoContentSerie = () => {
       getSerieData();
       getSerieVideo();
       getSerieCredits();
+      getSerieRecommendation();
     }, 750);
   }, [id]);
 
@@ -82,11 +98,16 @@ export const InfoContentSerie = () => {
       {loading ? (
         <Loading />
       ) : (
-        <SerieContent
-          serieData={serieData}
-          serieVideo={serieVideo}
-          serieCredits={serieCredits}
-        />
+        <>
+          <SerieContent
+            serieData={serieData}
+            serieVideo={serieVideo}
+            serieCredits={serieCredits}
+          />
+          <CarouselSerieRecommendation
+            serieRecommendation={serieRecommendation}
+          />
+        </>
       )}
     </>
   );
