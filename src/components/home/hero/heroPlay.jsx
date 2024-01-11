@@ -1,6 +1,6 @@
 import React from "react";
 
-export const HeroPlay = ({ show, setShow }) => {
+export const HeroPlay = ({ title, show, setShow }) => {
   const closeModal = () => setShow(false);
 
   return (
@@ -14,7 +14,7 @@ export const HeroPlay = ({ show, setShow }) => {
           <div className="modal-container bg-gray-900 w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
             <div className="modal-content py-4 text-left px-6">
               <div className="flex justify-between items-center pb-3">
-                <p className="text-2xl font-bold">Header</p>
+                <p className="text-2xl font-bold">{title} </p>
                 <div
                   className="modal-close cursor-pointer z-50"
                   onClick={() => closeModal()}
@@ -32,9 +32,7 @@ export const HeroPlay = ({ show, setShow }) => {
               </div>
               <div className="my-5">
                 <p>
-                  Inliberali Persius Multi iustitia pronuntiaret expeteretur
-                  sanos didicisset laus angusti ferrentur arbitrium arbitramur
-                  huic desiderent.?
+                  Video player implementation scheduled for upcoming releases.
                 </p>
               </div>
             </div>

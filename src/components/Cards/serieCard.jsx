@@ -1,11 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import NoImagenFound from "../../assets/images/imageNotFound.jpg";
 
-export const CardsData = ({ data }) => {
+export const SerieCard = ({ data }) => {
+  const navigate = useNavigate();
+
+  const goToInfoViewSerie = (id) => {
+    navigate(`/serie/${id}`);
+  };
+
   return (
     <>
       <div className="xl:w-1/4 lg:w-1/3 md:w-1/2 sm:w-1/2 p-4">
-        <div className="bg-gray-800 p-6 rounded-lg cardStyle">
+        <div
+          className="bg-gray-800 p-6 rounded-lg transition-all duration-700 hover:scale-105 cursor-pointer cardStyle"
+          onClick={() => goToInfoViewSerie(data.id)}
+        >
           <img
             className={
               data.poster_path !== null
@@ -22,16 +32,12 @@ export const CardsData = ({ data }) => {
           <div className="flex justify-between items-center">
             <h3
               className={
-                data.release_date && data.first_air_date !== ""
+                data.first_air_date !== ""
                   ? "tracking-widest text-sm font-medium title-font"
                   : "text-sm font-medium title-font"
               }
             >
-              {data.release_date
-                ? data.release_date !== ""
-                  ? data.release_date
-                  : "date not found"
-                : data.first_air_date
+              {data.first_air_date !== ""
                 ? data.first_air_date
                 : "date not found"}
             </h3>
@@ -59,7 +65,7 @@ export const CardsData = ({ data }) => {
             </div>
           </div>
           <h2 className="text-lg text-white font-medium title-font mb-4 titleCard">
-            {data.title ? data.title : data.name}
+            {data.name}
           </h2>
           <p className="leading-relaxed text-pretty text-base overviewCard">
             {data.overview !== "" ? data.overview : "Overview not available"}

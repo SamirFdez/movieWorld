@@ -14,8 +14,7 @@ export const InfoContentMovie = () => {
   const paramsMovieCredits = `/movie/${id}/credits?language=en-US`;
   const paramsMovieSimilar = `/movie/${id}/similar?language=en-US&page=1`;
 
-
-  const [movieData, setMovieData] = useState([]);
+  const [movieData, setMovieData] = useState({});
   const [movieVideo, setMovieVideo] = useState([]);
   const [movieCredits, setMovieCredits] = useState([]);
   const [movieSimilar, setMovieSimilar] = useState([]);

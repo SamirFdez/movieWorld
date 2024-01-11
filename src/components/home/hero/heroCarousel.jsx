@@ -2,7 +2,8 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import { carouselOptions } from "../../../config/carouselOptions";
 
-export const HeroDesktopCarousel = ({
+export const HeroCarousel = ({
+  dataMovieHero,
   dataHero,
   positionHero,
   setPositionHero,

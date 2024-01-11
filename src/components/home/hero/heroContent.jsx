@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { HeroMobile } from "./heroMobile";
-import { HeroDesktop } from "./heroDesktop";
 import axios from "axios";
-
+import { HeroInfo } from "./heroInfo";
 import { Loading } from "../../utils/loading";
 
 export const HeroContent = () => {
@@ -62,14 +60,12 @@ export const HeroContent = () => {
         <Loading />
       ) : (
         <>
-          <HeroMobile />
-          {/* <HeroDesktop
+          <HeroInfo
             dataMovieHero={dataMovieHero}
-            genresMovie={genresMovie}
             dataHero={dataHero}
             positionHero={positionHero}
             setPositionHero={setPositionHero}
-          /> */}
+          />
         </>
       )}
     </>
