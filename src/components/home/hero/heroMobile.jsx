@@ -26,7 +26,8 @@ export const HeroMobile = () => {
 
   return (
     <>
-      <div className="container mx-auto block lg:hidden"> 
+      {/* <div className="container mx-auto block lg:hidden">  */}
+      <div className="container mx-auto block"> 
         <div
           className="relative max-w-screen-full overflow-hidden"
           style={{ marginTop: "70px" }}

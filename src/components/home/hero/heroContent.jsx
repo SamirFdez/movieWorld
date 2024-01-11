@@ -63,13 +63,13 @@ export const HeroContent = () => {
       ) : (
         <>
           <HeroMobile />
-          <HeroDesktop
+          {/* <HeroDesktop
             dataMovieHero={dataMovieHero}
             genresMovie={genresMovie}
             dataHero={dataHero}
             positionHero={positionHero}
             setPositionHero={setPositionHero}
-          />
+          /> */}
         </>
       )}
     </>

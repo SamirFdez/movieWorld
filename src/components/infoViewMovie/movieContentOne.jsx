@@ -3,8 +3,11 @@ import React, { useState } from "react";
 export const MovieContentOne = ({ movieData, convertDuration }) => {
   const [readMore, setReadMore] = useState(true);
 
-  const overviewNotComplete = movieData?.overview.slice(0, 240);
-  const overviewComplete = movieData?.overview;
+  if (!movieData || !movieData.overview) {
+    return;
+  }
+  const overviewNotComplete = movieData.overview.slice(0, 240);
+  const overviewComplete = movieData.overview;
 
   return (
     <>
