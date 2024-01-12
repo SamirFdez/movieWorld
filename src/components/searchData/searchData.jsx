@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { SearchTabs } from "./searchTabs";
 import { SearchDataContent } from "./searchDataContent";
 import { NoDataFound } from "./noDataFound";
 import { Loading } from "../utils/loading";
@@ -12,6 +13,8 @@ export const SearchData = ({ newSearch }) => {
   const [dataSearched, setDataSearched] = useState([]);
   const [dataFound, setDataFound] = useState();
   const [loading, setLoading] = useState(true);
+
+  const [tabActive, setTabActive] = useState(0);
 
   const config = {
     headers: {
@@ -50,9 +53,11 @@ export const SearchData = ({ newSearch }) => {
                     Search results:
                   </h1>
                 </div>
-                <div className="flex flex-wrap m-4">
-                  <SearchDataContent dataSearched={dataSearched} />
-                </div>
+                <SearchTabs tabActive={tabActive} setTabActive={setTabActive} />
+                <SearchDataContent
+                  tabActive={tabActive}
+                  dataSearched={dataSearched}
+                />
               </>
             </div>
           ) : (

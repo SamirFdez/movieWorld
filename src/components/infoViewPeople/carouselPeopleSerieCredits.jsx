@@ -6,8 +6,8 @@ import { carouselOptions } from "../../config/carouselOptions";
 export const CarouselPeopleSerieCredits = ({ peopleSerieCredits }) => {
   const navigate = useNavigate();
 
-  const goToInfoViewMovie = (id) => {
-    navigate(`/movie/${id}`);
+  const goToInfoViewSerie = (id) => {
+    navigate(`/serie/${id}`);
   };
 
   const peopleSerieCreditsFiltered = peopleSerieCredits?.filter(
@@ -30,7 +30,7 @@ export const CarouselPeopleSerieCredits = ({ peopleSerieCredits }) => {
                 <div
                   className="shadow-md shadow-gray-800 transition-all duration-700 hover:scale-105 cursor-pointer mx-1 my-4"
                   key={`people-series-credits-${index + 1}`}
-                  //   onClick={() => goToInfoViewMovie(seriesCredits.id)}
+                  onClick={() => goToInfoViewSerie(seriesCredits.id)}
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w400${seriesCredits.poster_path}`}
