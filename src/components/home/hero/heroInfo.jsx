@@ -28,7 +28,7 @@ export const HeroInfo = ({
     <>
       <div className="hero min-h-screen bg-gray-900 flex flex-col items-center justify-center">
         <div
-          className={`container mx-auto flex flex-col lg:flex-row items-center mt-24 mb-2 lg:px-10 lg:mt-0 lg:mb-8 fade-transition ${
+          className={`container mx-auto flex flex-col lg:flex-row items-center mt-24 mb-2 lg:px-10 lg:mt-0 lg:mb-4 fade-transition ${
             showContent ? "fade-in" : "fade-out"
           }`}
         >
@@ -45,7 +45,7 @@ export const HeroInfo = ({
               {dataMovieHero.overview}
             </p>
             <button
-              className="inline-flex justify-center items-center w-32 border text-white bg-blue-700 border-gray-900 transition-all duration-700 hover:border hover:bg-blue-900 hover:border-blue-900 hover:text-white rounded text-lg py-2 px-6 mr-5 fade-transition"
+              className="inline-flex justify-center items-center border text-white bg-blue-700 border-gray-900 transition-all duration-700 hover:border hover:bg-blue-900 hover:border-blue-900 hover:text-white rounded text-lg py-2 px-6 mr-5 fade-transition"
               onClick={() => setShow(true)}
             >
               <svg
@@ -65,7 +65,7 @@ export const HeroInfo = ({
               Play
             </button>
             <button
-              className="inline-flex justify-center items-center w-40 border text-white bg-blue-700 border-gray-900 transition-all duration-700 hover:border hover:bg-blue-900 hover:border-blue-900 hover:text-white rounded text-lg py-2 px-6 mr-5 fade-transition"
+              className="inline-flex justify-center items-center border text-white bg-blue-700 border-gray-900 transition-all duration-700 hover:border hover:bg-blue-900 hover:border-blue-900 hover:text-white rounded text-lg py-2 px-6 mr-5 fade-transition"
               onClick={() => goToInfoViewMovie(dataMovieHero.id)}
             >
               <svg

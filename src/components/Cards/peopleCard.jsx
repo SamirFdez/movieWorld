@@ -1,12 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import NoImagenFound from "../../assets/images/noProfilePhoto.png";
+import NoProfilePhoto from "../../assets/images/noProfilePhoto.png";
 
-export const PeopleCard = ({ data }) => {
+export const PeopleCard = ({ data, setWordSearch }) => {
   const navigate = useNavigate();
 
   const goToInfoViewMovie = (id) => {
     navigate(`/people/${id}`);
+    setWordSearch("");
   };
 
   return (
@@ -17,15 +18,11 @@ export const PeopleCard = ({ data }) => {
           onClick={() => goToInfoViewMovie(data.id)}
         >
           <img
-            className={
-              data.poster_path !== null
-                ? "h-90 rounded w-full object-cover object-top mb-6 imgCard"
-                : "h-90 rounded w-full object-fill mb-6 imgCard"
-            }
+            className="h-90 rounded w-full object-cover object-top mb-6 imgCard"
             src={
-              data.poster_path !== null
+              data.profile_path !== null
                 ? `https://image.tmdb.org/t/p/w400${data.profile_path}`
-                : NoImagenFound
+                : NoProfilePhoto
             }
             alt={data.name}
           />

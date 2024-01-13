@@ -24,7 +24,7 @@ export const InfoViewMovie = () => {
             <InfoContentMovie />
           </>
         ) : (
-          <SearchData newSearch={newSearch} />
+          <SearchData newSearch={newSearch} setWordSearch={setWordSearch} />
         )}
         <Footer />
       </div>

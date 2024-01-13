@@ -2,11 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import NoImagenFound from "../../assets/images/imageNotFound.jpg";
 
-export const SerieCard = ({ data }) => {
+export const SerieCard = ({ data, setWordSearch }) => {
   const navigate = useNavigate();
 
   const goToInfoViewSerie = (id) => {
     navigate(`/serie/${id}`);
+    setWordSearch("");
   };
 
   return (

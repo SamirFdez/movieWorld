@@ -5,7 +5,7 @@ import { SearchDataContent } from "./searchDataContent";
 import { NoDataFound } from "./noDataFound";
 import { Loading } from "../utils/loading";
 
-export const SearchData = ({ newSearch }) => {
+export const SearchData = ({ newSearch, setWordSearch }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
   const params = `/search/multi?query=${newSearch}&include_adult=false&language=en-US&page=1`;
@@ -57,6 +57,7 @@ export const SearchData = ({ newSearch }) => {
                 <SearchDataContent
                   tabActive={tabActive}
                   dataSearched={dataSearched}
+                  setWordSearch={setWordSearch}
                 />
               </>
             </div>
