@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NoImagenFound from "../../assets/images/imageNotFound.jpg";
+import dayjs from "dayjs"; 
 
 export const AccordionSeasonCaps = ({ idSerie, seasonNumber }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
@@ -46,7 +47,7 @@ export const AccordionSeasonCaps = ({ idSerie, seasonNumber }) => {
               <div className="h-full flex items-center border-gray-200 hover:border-blue-700 border p-4 rounded-lg">
                 <img
                   alt="team"
-                  className="w-32 h-24 bg-gray-100 object-cover object-center flex-shrink-0 mr-4"
+                  className="w-32 h-auto bg-gray-100 object-cover object-center flex-shrink-0 mr-4"
                   src={
                     episode.still_path !== null
                       ? `https://image.tmdb.org/t/p/w400${episode.still_path}`
@@ -58,6 +59,11 @@ export const AccordionSeasonCaps = ({ idSerie, seasonNumber }) => {
                     {episode.episode_number}. {episode.name}
                   </h2>
                   <p className="text-gray-500">{episode.overview}</p>
+                  <p className="text-gray-500">
+                    {episode?.air_date !== null && episode?.air_date !== ""
+                      ? dayjs(episode?.air_date).format("MMM D, YYYY")
+                      : "Air date not found"}
+                  </p>
                 </div>
               </div>
             </div>

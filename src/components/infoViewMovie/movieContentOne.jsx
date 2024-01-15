@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import dayjs from "dayjs";
 
 export const MovieContentOne = ({ movieData, convertDuration }) => {
   const [readMore, setReadMore] = useState(true);
@@ -49,8 +50,8 @@ export const MovieContentOne = ({ movieData, convertDuration }) => {
               : "ml-auto text-white"
           }
         >
-          {movieData.release_date !== ""
-            ? movieData.release_date
+          {movieData?.release_date !== null && movieData?.release_date !== ""
+            ? dayjs(movieData?.release_date).format("MMM D, YYYY")
             : "date not found"}
         </span>
       </div>

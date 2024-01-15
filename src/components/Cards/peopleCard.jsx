@@ -65,7 +65,7 @@ export const PeopleCard = ({ data }) => {
             {data.name}
           </h2>
           <p className="leading-relaxed text-pretty text-base overviewCard">
-            {data.known_for[0].overview !== ""
+            {data.known_for.length && data.known_for[0].overview !== ""
               ? data.known_for[0].overview
               : "biography not available"}
           </p>

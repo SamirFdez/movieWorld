@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import NoProfilePhoto from "../../assets/images/noProfilePhoto.png";
+import dayjs from "dayjs";
 
 export const PeopleContent = ({ peopleData }) => {
   const [readMore, setReadMore] = useState(true);
 
   if (!peopleData) {
-    return "";
+    return;
   }
 
-  const biographyNotComplete = peopleData?.biography.slice(0, 240);
+  const biographyNotComplete = peopleData?.biography?.slice(0, 240);
   const biographyComplete = peopleData?.biography;
-
-  const formatDate = (date) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    const [year, month, day] = date?.split("-") || [];
-    const formattedDate = new Date(year, month - 1, day).toLocaleDateString(
-      "en-US",
-      options
-    );
-    return formattedDate;
-  };
 
   return (
     <>
@@ -44,8 +35,9 @@ export const PeopleContent = ({ peopleData }) => {
               {peopleData.name}
             </h1>
             <p className="leading-relaxed py-2">
-              {peopleData.biography !== "" ? (
-                biographyComplete.length - biographyNotComplete.length > 44 ? (
+              {peopleData?.biography !== "" ? (
+                biographyComplete?.length - biographyNotComplete?.length >
+                44 ? (
                   readMore ? (
                     <>
                       {biographyNotComplete + "... "}
@@ -71,8 +63,8 @@ export const PeopleContent = ({ peopleData }) => {
             <div className="flex border-t border-gray-800 py-2">
               <span className="text-gray-500">Birthday</span>
               <span className="ml-auto text-white">
-                {peopleData.birthday !== null
-                  ? formatDate(peopleData?.birthday)
+                {peopleData?.birthday !== null && peopleData?.birthday !== ""
+                  ? dayjs(peopleData?.birthday).format("MMM D, YYYY")
                   : "Birthday not found"}
               </span>
             </div>
@@ -84,11 +76,13 @@ export const PeopleContent = ({ peopleData }) => {
                   : "Birthplace not found"}
               </span>
             </div>
-            {peopleData.deathday !== null ? (
+            {peopleData?.deathday !== null && peopleData?.deathday !== "" ? (
               <div className="flex border-t border-gray-800 py-2">
-                <span className="text-gray-500">Place of birth</span>
+                <span className="text-gray-500">Deathday</span>
                 <span className="ml-auto text-white">
-                  {formatDate(peopleData?.deathday)}
+                  {peopleData?.deathday !== null && peopleData?.deathday !== ""
+                    ? dayjs(peopleData?.deathday).format("MMM D, YYYY")
+                    : "Deathday not found"}
                 </span>
               </div>
             ) : null}

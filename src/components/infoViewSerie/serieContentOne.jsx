@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import dayjs from "dayjs";
 
 export const SerieContentOne = ({ serieData }) => {
   const [readMore, setReadMore] = useState(true);
@@ -44,13 +45,15 @@ export const SerieContentOne = ({ serieData }) => {
         <span className="text-gray-500">First Air Date</span>
         <span
           className={
-            serieData.first_air_date !== ""
+            serieData?.first_air_date !== "" &&
+            serieData?.first_air_date !== null
               ? "ml-auto text-white tracking-wider"
               : "ml-auto text-white"
           }
         >
-          {serieData.first_air_date !== ""
-            ? serieData.first_air_date
+          {serieData?.first_air_date !== "" &&
+          serieData?.first_air_date !== null
+            ? dayjs(serieData?.first_air_date).format("MMM D, YYYY")
             : "date not found"}
         </span>
       </div>
@@ -58,13 +61,13 @@ export const SerieContentOne = ({ serieData }) => {
         <span className="text-gray-500">Last Air Date</span>
         <span
           className={
-            serieData.last_air_date !== ""
+            serieData?.last_air_date !== "" && serieData?.last_air_date !== null
               ? "ml-auto text-white tracking-wider"
               : "ml-auto text-white"
           }
         >
-          {serieData.last_air_date !== ""
-            ? serieData.last_air_date
+          {serieData?.last_air_date !== "" && serieData?.last_air_date !== null
+            ? dayjs(serieData?.last_air_date).format("MMM D, YYYY")
             : "date not found"}
         </span>
       </div>
