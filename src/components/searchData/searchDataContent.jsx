@@ -17,34 +17,22 @@ export const SearchDataContent = ({
 
   return (
     <>
-      <div className="flex flex-wrap m-4" id="myTabContent">
+      <div className="flex flex-wrap m-4">
         {tabActive === 0 ? (
           <>
             {movieData.length
               ? movieData.map((data, index) => (
-                  <MovieCard
-                    data={data}
-                    setWordSearch={setWordSearch}
-                    key={`movie-card-${index}`}
-                  />
+                  <MovieCard data={data} key={`movie-card-${index}`} />
                 ))
               : null}
             {serieData.length
               ? serieData.map((data, index) => (
-                  <SerieCard
-                    data={data}
-                    setWordSearch={setWordSearch}
-                    key={`serie-card-${index}`}
-                  />
+                  <SerieCard data={data} key={`serie-card-${index}`} />
                 ))
               : null}
             {personData.length
               ? personData.map((data, index) => (
-                  <PeopleCard
-                    data={data}
-                    setWordSearch={setWordSearch}
-                    key={`people-card-${index}`}
-                  />
+                  <PeopleCard data={data} key={`people-card-${index}`} />
                 ))
               : null}
           </>

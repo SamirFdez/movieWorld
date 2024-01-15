@@ -4,9 +4,10 @@ import NoProfilePhoto from "../../assets/images/noProfilePhoto.png";
 export const PeopleContent = ({ peopleData }) => {
   const [readMore, setReadMore] = useState(true);
 
-  if (!peopleData || peopleData.biography !== "") {
-    return;
+  if (!peopleData) {
+    return "";
   }
+
   const biographyNotComplete = peopleData?.biography.slice(0, 240);
   const biographyComplete = peopleData?.biography;
 

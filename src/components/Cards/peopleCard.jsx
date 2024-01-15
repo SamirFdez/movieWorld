@@ -2,12 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import NoProfilePhoto from "../../assets/images/noProfilePhoto.png";
 
-export const PeopleCard = ({ data, setWordSearch }) => {
+export const PeopleCard = ({ data }) => {
   const navigate = useNavigate();
 
   const goToInfoViewMovie = (id) => {
-    navigate(`/people/${id}`);
-    setWordSearch("");
+    location.href = `/people/${id}`;
+    // navigate(`/people/${id}`);
   };
 
   return (

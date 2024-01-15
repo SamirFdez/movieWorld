@@ -1,5 +1,5 @@
 import React from "react";
 
-export const FilterMovies = () => {
+export const FilterMovies = ({ genresList }) => {
   return <></>;
 };

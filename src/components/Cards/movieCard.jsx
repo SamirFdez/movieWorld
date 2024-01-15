@@ -2,12 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import NoImagenFound from "../../assets/images/imageNotFound.jpg";
 
-export const MovieCard = ({ data, setWordSearch }) => {
+export const MovieCard = ({ data }) => {
   const navigate = useNavigate();
 
   const goToInfoViewMovie = (id) => {
-    navigate(`/movie/${id}`);
-    setWordSearch("");
+    location.href = `/movie/${id}`;
+    // navigate(`/movie/${id}`);
   };
 
   return (

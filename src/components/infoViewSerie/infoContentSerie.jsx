@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { SerieContent } from "./serieContent";
 import { CarouselSerieRecommendation } from "./carouselSerieRecommendation";
+import { AccordionSeason } from "./AccordionSeason";
 import { Loading } from "../utils/loading";
 
 export const InfoContentSerie = () => {
@@ -104,6 +105,7 @@ export const InfoContentSerie = () => {
             serieVideo={serieVideo}
             serieCredits={serieCredits}
           />
+          <AccordionSeason idSerie={id} seasonData={serieData?.seasons} />
           <CarouselSerieRecommendation
             serieRecommendation={serieRecommendation}
           />

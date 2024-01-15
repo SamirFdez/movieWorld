@@ -4,7 +4,7 @@ import { searchTabArray } from "../../config/searchTabs";
 export const SearchTabs = ({ tabActive, setTabActive }) => {
   return (
     <>
-      <div className="mt-8 mx-4">
+      <div className="mt-2 mx-4">
         <ul className="flex flex-wrap justify-center text-base font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 ">
           {searchTabArray.map((tab, index) => (
             <li

@@ -46,7 +46,7 @@ export const SearchData = ({ newSearch, setWordSearch }) => {
       ) : (
         <>
           {dataFound !== 0 ? (
-            <div className="container mx-auto" style={{ marginTop: "70px" }}>
+            <div className="container mx-auto" style={{ marginTop: "80px" }}>
               <>
                 <div className="flex flex-col text-center w-full">
                   <h1 className="sm:text-3xl text-2xl font-medium title-font text-white tracking-wider">
