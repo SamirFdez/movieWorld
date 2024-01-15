@@ -105,7 +105,7 @@ export const InfoContentSerie = () => {
             serieVideo={serieVideo}
             serieCredits={serieCredits}
           />
-          <AccordionSeason idSerie={id} seasonData={serieData?.seasons} />
+          <AccordionSeason idSerie={serieData?.id} seasonData={serieData?.seasons} />
           <CarouselSerieRecommendation
             serieRecommendation={serieRecommendation}
           />
