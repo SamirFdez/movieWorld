@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { SerieContent } from "./serieContent";
 import { CarouselSerieRecommendation } from "./carouselSerieRecommendation";
-import { AccordionSeason } from "./AccordionSeason";
+import { AccordionSeason } from "./accordionSeason";
 import { Loading } from "../utils/loading";
 
 export const InfoContentSerie = () => {
