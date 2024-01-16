@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FilterMovies } from "./filterMovies";
+import { MoviesFilter } from "./moviesFilter";
 import { MoviesResults } from "./moviesResults";
+import { MoviesPaginacion } from "./moviesPaginacion";
 import { Loading } from "../utils/loading";
 
 export const MoviesContent = () => {
@@ -10,8 +11,10 @@ export const MoviesContent = () => {
   const paramsGenresMovies = "/genre/movie/list?language=en";
 
   const [genresList, setGenresList] = useState([]);
+  const [page, setPage] = useState(2);
+  const [totalPages, setTotalPages] = useState();
   const [dataMovie, setDataMovie] = useState([]);
-  const [filterGenres, setFilterGenres] = useState("");
+  const [filterGenres, setFilterGenres] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const config = {
@@ -25,10 +28,11 @@ export const MoviesContent = () => {
     try {
       const response = await axios.get(
         baseUrl +
-          `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${filterGenres}`,
+          `/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${filterGenres}`,
         config
       );
       setDataMovie(response.data.results);
+      setTotalPages(response.data.total_pages);
       setLoading(false);
     } catch (error) {
       console.error("Error:", error);
@@ -54,7 +58,7 @@ export const MoviesContent = () => {
 
   useEffect(() => {
     getDataMovie();
-  }, [filterGenres]);
+  }, [filterGenres, page]);
 
   return (
     <>
@@ -62,8 +66,13 @@ export const MoviesContent = () => {
         <Loading />
       ) : (
         <>
-          <FilterMovies genresList={genresList} />
+          <MoviesFilter genresList={genresList} />
           <MoviesResults dataMovie={dataMovie} />
+          <MoviesPaginacion
+            page={page}
+            setPage={setPage}
+            totalPages={totalPages}
+          />
         </>
       )}
     </>
