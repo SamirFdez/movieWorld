@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { MoviesFilter } from "./moviesFilter";
 import { MoviesResults } from "./moviesResults";
-import { MoviesPaginacion } from "./moviesPaginacion";
+import { Pagination } from "../utils/pagination";
 import { Loading } from "../utils/loading";
 
 export const MoviesContent = () => {
@@ -11,8 +11,7 @@ export const MoviesContent = () => {
   const paramsGenresMovies = "/genre/movie/list?language=en";
 
   const [genresList, setGenresList] = useState([]);
-  const [page, setPage] = useState(2);
-  const [totalPages, setTotalPages] = useState();
+  const [page, setPage] = useState(1);
   const [dataMovie, setDataMovie] = useState([]);
   const [filterGenres, setFilterGenres] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +31,6 @@ export const MoviesContent = () => {
         config
       );
       setDataMovie(response.data.results);
-      setTotalPages(response.data.total_pages);
       setLoading(false);
     } catch (error) {
       console.error("Error:", error);
@@ -52,12 +50,17 @@ export const MoviesContent = () => {
   };
 
   useEffect(() => {
-    getDataMovie();
-    getGenresList();
+    setTimeout(() => {
+      getDataMovie();
+      getGenresList();
+    }, 1000);
   }, []);
 
   useEffect(() => {
-    getDataMovie();
+    setLoading(true);
+    setTimeout(() => {
+      getDataMovie();
+    }, 750);
   }, [filterGenres, page]);
 
   return (
@@ -68,11 +71,7 @@ export const MoviesContent = () => {
         <>
           <MoviesFilter genresList={genresList} />
           <MoviesResults dataMovie={dataMovie} />
-          <MoviesPaginacion
-            page={page}
-            setPage={setPage}
-            totalPages={totalPages}
-          />
+          <Pagination page={page} setPage={setPage} />
         </>
       )}
     </>

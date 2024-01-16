@@ -1,7 +1,6 @@
 import React from "react";
 
-export const MoviesPaginacion = ({ page, setPage, totalPages }) => {
-  console.log(totalPages);
+export const Pagination = ({ page, setPage }) => {
   return (
     <>
       <div className="container mx-auto my-4">
@@ -33,7 +32,7 @@ export const MoviesPaginacion = ({ page, setPage, totalPages }) => {
           <button className="join-item btn text-lg bg-blue-700 text-white hover:bg-blue-700 hover:text-white">
             {page}
           </button>
-          {page + 1 > 0 ? (
+          {page + 1 < 500 ? (
             <button
               className="join-item btn text-lg hover:bg-blue-700 hover:text-white"
               onClick={() => setPage(page + 1)}
@@ -41,7 +40,7 @@ export const MoviesPaginacion = ({ page, setPage, totalPages }) => {
               {page + 1}
             </button>
           ) : null}
-          {page + 2 > 0 ? (
+          {page + 2 < 500 ? (
             <button
               className="join-item btn text-lg hover:bg-blue-700 hover:text-white"
               onClick={() => setPage(page + 2)}
@@ -49,10 +48,10 @@ export const MoviesPaginacion = ({ page, setPage, totalPages }) => {
               {page + 2}
             </button>
           ) : null}
-          {page !== totalPages ? (
+          {page !== 500 ? (
             <button
               className="join-item btn text-lg hover:bg-blue-700 hover:text-white"
-              onClick={() => setPage(totalPages)}
+              onClick={() => setPage(500)}
             >
               »
             </button>
