@@ -7,7 +7,7 @@ export const Pagination = ({ page, setPage }) => {
         <div className="flex justify-center join">
           {page !== 1 ? (
             <button
-              className="join-item btn text-lg hover:bg-blue-700 hover:text-white"
+              className="join-item btn text-lg bg-gray-800 hover:bg-blue-700 hover:text-white"
               onClick={() => setPage(1)}
             >
               «
@@ -15,7 +15,7 @@ export const Pagination = ({ page, setPage }) => {
           ) : null}
           {page - 2 > 0 ? (
             <button
-              className="join-item btn text-lg hover:bg-blue-700 hover:text-white"
+              className="join-item btn text-lg bg-gray-800 hover:bg-blue-700 hover:text-white"
               onClick={() => setPage(page - 2)}
             >
               {page - 2}
@@ -23,7 +23,7 @@ export const Pagination = ({ page, setPage }) => {
           ) : null}
           {page - 1 > 0 ? (
             <button
-              className="join-item btn text-lg hover:bg-blue-700 hover:text-white"
+              className="join-item btn text-lg bg-gray-800 hover:bg-blue-700 hover:text-white"
               onClick={() => setPage(page - 1)}
             >
               {page - 1}
@@ -34,7 +34,7 @@ export const Pagination = ({ page, setPage }) => {
           </button>
           {page + 1 < 500 ? (
             <button
-              className="join-item btn text-lg hover:bg-blue-700 hover:text-white"
+              className="join-item btn text-lg bg-gray-800 hover:bg-blue-700 hover:text-white"
               onClick={() => setPage(page + 1)}
             >
               {page + 1}
@@ -42,7 +42,7 @@ export const Pagination = ({ page, setPage }) => {
           ) : null}
           {page + 2 < 500 ? (
             <button
-              className="join-item btn text-lg hover:bg-blue-700 hover:text-white"
+              className="join-item btn text-lg bg-gray-800 hover:bg-blue-700 hover:text-white"
               onClick={() => setPage(page + 2)}
             >
               {page + 2}
@@ -50,7 +50,7 @@ export const Pagination = ({ page, setPage }) => {
           ) : null}
           {page !== 500 ? (
             <button
-              className="join-item btn text-lg hover:bg-blue-700 hover:text-white"
+              className="join-item btn text-lg bg-gray-800 hover:bg-blue-700 hover:text-white"
               onClick={() => setPage(500)}
             >
               »

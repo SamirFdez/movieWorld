@@ -1,70 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export const MoviesFilter = ({ genresList }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+export const MoviesFilter = ({ genresList, setFilterGenres }) => {
+  const [updateGenresList, setUpdateGenresList] = useState([]);
 
-  const handleDropdownToggle = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  useEffect(() => {
+    const copyGenresList = genresList?.map((data) => ({
+      ...data,
+      selected: false,
+    }));
+    setUpdateGenresList(copyGenresList);
+  }, [genresList]);
+
+  const genresSelected = (id) => {
+    const genresListSelected = updateGenresList.filter(
+      (genres) => genres.selected === true
+    );
+    if (genresListSelected.length < 3) {
+      const copyGenresList = [...updateGenresList];
+      const genres = copyGenresList.find((genres) => genres.id === id);
+      genres.selected = !genres.selected;
+      setUpdateGenresList(copyGenresList);
+    }
   };
 
   return (
     <>
       <div className="mx-auto" style={{ marginTop: "80px" }}>
-        <div className="">
-          <button
-            id="dropdownSearchButton"
-            data-dropdown-toggle="dropdownSearch"
-            className="inline-flex justify-between items-center px-4 py-2 text-base font-medium w-48 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            type="button"
-            onClick={handleDropdownToggle}
+        <button
+          className="btn justify-around text-lg w-40 text-white bg-blue-700 hover:bg-blue-900"
+          onClick={() => document.getElementById("modalFilter").showModal()}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 22 22"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6"
           >
-            Filter category
-            <svg
-              className="w-2.5 h-2.5 ms-2.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 10 6"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m1 1 4 4 4-4"
-              />
-            </svg>
-          </button>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
+            />
+          </svg>
+          Filters
+        </button>
 
-          {isDropdownOpen && (
-            <div
-              id="dropdownSearch"
-              className="z-10 bg-white rounded-lg shadow w-48 dark:bg-gray-700"
-            >
-              <ul
-                className="h-48 px-2 py-2 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
-                aria-labelledby="dropdownSearchButton"
-              >
-                <li className="" key="0">
-                  <div className="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+        <dialog id="modalFilter" className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <form method="dialog" className="border-b border-gray-500">
+              <div className="flex justify-between mb-2">
+                <div></div>
+                <h3 className="font-bold text-lg text-white">Filters</h3>
+                <button className="btn btn-sm btn-circle btn-ghost">✕</button>
+              </div>
+            </form>
+            <div className="grid md:grid-cols-3 grid-cols-2 gap-4  py-4">
+              {updateGenresList?.map((genres, index) => (
+                <div className="form-control" key={`genres-filter-${index}`}>
+                  <label className="cursor-pointer label justify-start">
                     <input
-                      id={`checkbox-item-0}`}
                       type="checkbox"
-                      value=""
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                      checked={genres.selected}
+                      className="checkbox mr-4"
+                      onChange={() => genresSelected(genres.id)}
                     />
-                    <label
-                      htmlFor={`checkbox-item-0`}
-                      className="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-                    >
-                      keelokee
-                    </label>
-                  </div>
-                </li>
-              </ul>
+                    <span className="label-text text-base hidden md:block">
+                      {genres.name.length < 12
+                        ? genres.name
+                        : genres.name.slice(0, 12) + "..."}
+                    </span>
+                    <span className="label-text text-base block md:hidden">
+                      {genres.name}
+                    </span>
+                  </label>
+                </div>
+              ))}
             </div>
-          )}
-        </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
       </div>
     </>
   );
