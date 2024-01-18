@@ -64,10 +64,22 @@ export const MoviesContent = () => {
       );
       setSearchedMovie(response.data.results);
       setTotalPages(response.data.total_pages);
+      setLoading(false);
     } catch (error) {
       console.error("Error:", error);
       setLoading(true);
     }
+  };
+
+  const searchDataMovie = () => {
+    setLoading(true);
+    setTimeout(() => {
+      if (movieSearch === "") {
+        getDataMovie();
+      } else {
+        getSearchedMovie();
+      }
+    }, 750);
   };
 
   useEffect(() => {
@@ -78,15 +90,12 @@ export const MoviesContent = () => {
   }, []);
 
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      if (movieSearch === "") {
-        getDataMovie();
-      } else {
-        getSearchedMovie();
-      }
-    }, 750);
-  }, [filterGenres, page, movieSearch]);
+    getDataMovie();
+  }, [filterGenres]);
+
+  useEffect(() => {
+    searchDataMovie();
+  }, [page, movieSearch]);
 
   return (
     <>

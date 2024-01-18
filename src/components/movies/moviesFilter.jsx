@@ -7,8 +7,19 @@ export const MoviesFilter = ({
   setMovieSearch,
 }) => {
   const [updateGenresList, setUpdateGenresList] = useState([]);
-  const [genresListSelected, setGenresListSelected] = useState([]);
   const [inputValue, setInputValue] = useState(movieSearch);
+
+  const newGenresList = () => {
+    const copyGenresList = genresList?.map((data) => ({
+      ...data,
+      selected: false,
+    }));
+    setUpdateGenresList(copyGenresList);
+  };
+
+  useEffect(() => {
+    newGenresList();
+  }, [genresList]);
 
   const handleInputMovieSearch = (event) => {
     setInputValue(event.target.value);
@@ -24,29 +35,24 @@ export const MoviesFilter = ({
   };
 
   const genresSelected = (id) => {
+    const copyGenresList = [...updateGenresList];
+
     const genresListSelected = updateGenresList.filter(
       (genres) => genres.selected === true
     );
     if (genresListSelected.length < 3) {
-      const copyGenresList = [...updateGenresList];
       const genres = copyGenresList.find((genres) => genres.id === id);
       genres.selected = !genres.selected;
-      setUpdateGenresList(copyGenresList);
     } else {
-      const copyGenresList = [...updateGenresList];
       const genres = copyGenresList.find((genres) => genres.id === id);
       genres.selected = false;
-      setUpdateGenresList(copyGenresList);
     }
-  };
-
-  useEffect(() => {
-    const copyGenresList = genresList?.map((data) => ({
-      ...data,
-      selected: false,
-    }));
+    const newFilter = copyGenresList
+      .filter((genres) => genres.selected === true)
+      .map((genres) => genres.id);
+    setFilterGenres(newFilter.join(","));
     setUpdateGenresList(copyGenresList);
-  }, [genresList]);
+  };
 
   return (
     <>
@@ -61,7 +67,7 @@ export const MoviesFilter = ({
             onKeyUp={handleInputWithDelay}
           />
           <button
-            className="btn justify-around text-base text-white bg-blue-700  h-auto  hover:bg-blue-900 py-1 px-2"
+            className="btn capitalize justify-around text-base text-white bg-blue-700  h-auto  hover:bg-blue-900 py-1 px-2"
             onClick={() => document.getElementById("modalFilter").showModal()}
           >
             <svg
