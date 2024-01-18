@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { MoviesFilter } from "./moviesFilter";
+import { FilterData } from "../utils/filterData";
 import { MoviesResults } from "./moviesResults";
 import { Pagination } from "../utils/pagination";
 import { Loading } from "../utils/loading";
@@ -103,7 +103,7 @@ export const MoviesContent = () => {
         <Loading />
       ) : (
         <>
-          <MoviesFilter
+          <FilterData
             genresList={genresList}
             setFilterGenres={setFilterGenres}
             movieSearch={movieSearch}
