@@ -11,16 +11,32 @@ export const MoviesContent = () => {
   const paramsGenresMovies = "/genre/movie/list?language=en";
 
   const [genresList, setGenresList] = useState([]);
-  const [page, setPage] = useState(1);
   const [dataMovie, setDataMovie] = useState([]);
+  const [searchedMovie, setSearchedMovie] = useState([]);
+  const [movieSearch, setMovieSearch] = useState("");
   const [filterGenres, setFilterGenres] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
+
+  const moviesToShow = movieSearch === "" ? dataMovie : searchedMovie;
 
   const config = {
     headers: {
       "Content-Type": "application/json",
       Authorization: auth,
     },
+  };
+
+  const getGenresList = async () => {
+    try {
+      const response = await axios.get(baseUrl + paramsGenresMovies, config);
+      setGenresList(response.data.genres);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
+      setLoading(true);
+    }
   };
 
   const getDataMovie = async () => {
@@ -31,6 +47,7 @@ export const MoviesContent = () => {
         config
       );
       setDataMovie(response.data.results);
+      setTotalPages(response.data.total_pages);
       setLoading(false);
     } catch (error) {
       console.error("Error:", error);
@@ -38,11 +55,15 @@ export const MoviesContent = () => {
     }
   };
 
-  const getGenresList = async () => {
+  const getSearchedMovie = async () => {
     try {
-      const response = await axios.get(baseUrl + paramsGenresMovies, config);
-      setGenresList(response.data.genres);
-      setLoading(false);
+      const response = await axios.get(
+        baseUrl +
+          `/search/movie?query=${movieSearch}&include_adult=false&language=en-US&page=${page}`,
+        config
+      );
+      setSearchedMovie(response.data.results);
+      setTotalPages(response.data.total_pages);
     } catch (error) {
       console.error("Error:", error);
       setLoading(true);
@@ -59,9 +80,13 @@ export const MoviesContent = () => {
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
-      getDataMovie();
+      if (movieSearch === "") {
+        getDataMovie();
+      } else {
+        getSearchedMovie();
+      }
     }, 750);
-  }, [filterGenres, page]);
+  }, [filterGenres, page, movieSearch]);
 
   return (
     <>
@@ -69,9 +94,14 @@ export const MoviesContent = () => {
         <Loading />
       ) : (
         <>
-          <MoviesFilter genresList={genresList} />
-          <MoviesResults dataMovie={dataMovie} />
-          <Pagination page={page} setPage={setPage} />
+          <MoviesFilter
+            genresList={genresList}
+            setFilterGenres={setFilterGenres}
+            movieSearch={movieSearch}
+            setMovieSearch={setMovieSearch}
+          />
+          <MoviesResults dataMovie={moviesToShow} />
+          <Pagination page={page} setPage={setPage} totalPages={totalPages} />
         </>
       )}
     </>
