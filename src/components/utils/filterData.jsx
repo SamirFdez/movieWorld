@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { sortByData } from "../../config/sortByData";
 
 export const FilterData = ({
   genresList,
   setFilterGenres,
-  movieSearch,
-  setMovieSearch,
+  year,
+  setYear,
+  sortBy,
+  setSortBy,
+  setPage,
 }) => {
   const [updateGenresList, setUpdateGenresList] = useState([]);
-  const [inputValue, setInputValue] = useState(movieSearch);
+  const [arrayYear, setArrayYear] = useState([]);
 
   const newGenresList = () => {
     const copyGenresList = genresList?.map((data) => ({
@@ -17,22 +21,19 @@ export const FilterData = ({
     setUpdateGenresList(copyGenresList);
   };
 
+  const generateYears = () => {
+    const currentYear = new Date().getFullYear();
+    const yearList = Array.from(
+      { length: 51 },
+      (_, index) => currentYear - index
+    );
+    setArrayYear(yearList);
+  };
+
   useEffect(() => {
     newGenresList();
+    generateYears();
   }, [genresList]);
-
-  const handleInputMovieSearch = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleInputWithDelay = () => {
-    let timeoutId;
-    clearTimeout(timeoutId);
-
-    timeoutId = setTimeout(() => {
-      setMovieSearch(inputValue);
-    }, 1000);
-  };
 
   const genresSelected = (id) => {
     const copyGenresList = [...updateGenresList];
@@ -54,20 +55,22 @@ export const FilterData = ({
     setUpdateGenresList(copyGenresList);
   };
 
+  const sortBySelected = (e) => {
+    setSortBy(e.target.value);
+    setPage(1);
+  };
+
+  const yearSelected = (e) => {
+    setYear(e.target.value);
+    setPage(1);
+  };
+
   return (
     <>
       <div className="container mx-auto" style={{ marginTop: "80px" }}>
-        <div className="flex flex-wrap mx-4 px-4">
-          <input
-            type="text"
-            placeholder="Search movie..."
-            className="input input-bordered w-60 lg:w-full max-w-xs mr-2"
-            value={inputValue}
-            onChange={handleInputMovieSearch}
-            onKeyUp={handleInputWithDelay}
-          />
+        <div className="flex flex-wrap justify-center mx-0 sm:mx-4 p-1 sm:p-4">
           <button
-            className="btn capitalize justify-around text-base text-white bg-blue-700  h-auto  hover:bg-blue-900 py-1 px-2"
+            className="btn capitalize justify-around text-sm sm:text-base text-white bg-gray-800 hover:bg-gray-800 mr-2 sm:mr-4"
             onClick={() => document.getElementById("modalFilter").showModal()}
           >
             <svg
@@ -86,47 +89,75 @@ export const FilterData = ({
             </svg>
             Filters
           </button>
-
-          <dialog
-            id="modalFilter"
-            className="modal modal-bottom sm:modal-middle"
+          <select
+            value={sortBy}
+            onChange={sortBySelected}
+            className="select text-sm sm:text-base text-white bg-gray-800 w-32 sm:w-auto max-w-xs mr-2 sm:mr-4"
           >
-            <div className="modal-box">
-              <form method="dialog" className="border-b border-gray-500">
-                <div className="flex justify-between mb-2">
-                  <div></div>
-                  <h3 className="font-bold text-lg text-white">Filters</h3>
-                  <button className="btn btn-sm btn-circle btn-ghost">✕</button>
-                </div>
-              </form>
-              <div className="grid md:grid-cols-3 grid-cols-2 gap-4  py-4">
-                {updateGenresList?.map((genres, index) => (
-                  <div className="form-control" key={`genres-filter-${index}`}>
-                    <label className="cursor-pointer label justify-start">
-                      <input
-                        type="checkbox"
-                        checked={genres.selected}
-                        className="checkbox mr-4"
-                        onChange={() => genresSelected(genres.id)}
-                      />
-                      <span className="label-text text-base hidden md:block">
-                        {genres.name.length < 12
-                          ? genres.name
-                          : genres.name.slice(0, 12) + "..."}
-                      </span>
-                      <span className="label-text text-base block md:hidden">
-                        {genres.name}
-                      </span>
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <form method="dialog" className="modal-backdrop">
-              <button>close</button>
-            </form>
-          </dialog>
+            {sortByData.map((sort, index) => (
+              <option
+                className="flex justify-between"
+                value={sort.value}
+                key={index}
+              >
+                {sort.name} {sort.symbol}
+              </option>
+            ))}
+          </select>
+          <select
+            value={year}
+            onChange={yearSelected}
+            className="select text-sm sm:text-base text-white bg-gray-800 w-32 sm:w-auto max-w-xs"
+          >
+            <option value={""}>Every year </option>
+            {arrayYear.map((year, index) => (
+              <option
+                className="hover:bg-blue-900"
+                value={year.toString()}
+                key={index}
+              >
+                {year}
+              </option>
+            ))}
+          </select>
         </div>
+
+        <dialog id="modalFilter" className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <form method="dialog" className="border-b border-gray-500">
+              <div className="flex justify-between mb-2">
+                <div></div>
+                <h3 className="font-bold text-lg text-white">Filters</h3>
+                <button className="btn btn-sm btn-circle btn-ghost">✕</button>
+              </div>
+            </form>
+            <div className="grid md:grid-cols-3 grid-cols-2 gap-4  py-4">
+              {updateGenresList?.map((genres, index) => (
+                <div className="form-control" key={`genres-filter-${index}`}>
+                  <label className="cursor-pointer label justify-start">
+                    <input
+                      type="checkbox"
+                      checked={genres.selected}
+                      className="checkbox mr-4"
+                      onChange={() => genresSelected(genres.id)}
+                    />
+                    <span className="label-text text-base hidden md:block">
+                      {genres.name.length < 12
+                        ? genres.name
+                        : genres.name.slice(0, 12) + "..."}
+                    </span>
+                    <span className="label-text text-base block md:hidden">
+                      {genres.name}
+                    </span>
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
       </div>
     </>
   );

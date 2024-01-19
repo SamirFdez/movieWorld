@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { SearchTabs } from "./searchTabs";
 import { SearchDataContent } from "./searchDataContent";
-import { NoDataFound } from "./noDataFound";
+import { NoDataFound } from "../utils/noDataFound";
 import { Loading } from "../utils/loading";
 
 export const SearchData = ({ newSearch, setWordSearch }) => {

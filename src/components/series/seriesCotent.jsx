@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { SeriesFilter } from "./seriesFilter";
-import { SeriesResults } from "./seriesResults";
+import { FilterData } from "../utils/filterData";
+import { SeriesResults } from "../series/seriesResults";
 import { Pagination } from "../utils/pagination";
+import { NoDataFound } from "../utils/noDataFound";
 import { Loading } from "../utils/loading";
 
 export const SeriesContent = () => {
@@ -11,9 +12,12 @@ export const SeriesContent = () => {
   const paramsGenresSeries = "/genre/tv/list?language=en";
 
   const [genresList, setGenresList] = useState([]);
-  const [page, setPage] = useState(1);
   const [dataSerie, setDataSerie] = useState([]);
-  const [filterGenres, setFilterGenres] = useState("");
+  const [filterGenres, setFilterGenres] = useState([]);
+  const [year, setYear] = useState("");
+  const [sortBy, setSortBy] = useState("popularity.desc");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
 
   const config = {
@@ -23,14 +27,10 @@ export const SeriesContent = () => {
     },
   };
 
-  const getDataSerie = async () => {
+  const getGenresList = async () => {
     try {
-      const response = await axios.get(
-        baseUrl +
-          `/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${filterGenres}`,
-        config
-      );
-      setDataSerie(response.data.results);
+      const response = await axios.get(baseUrl + paramsGenresSeries, config);
+      setGenresList(response.data.genres);
       setLoading(false);
     } catch (error) {
       console.error("Error:", error);
@@ -38,11 +38,16 @@ export const SeriesContent = () => {
     }
   };
 
-  const getGenresList = async () => {
+  const getDataSerie = async () => {
     try {
-      const response = await axios.get(baseUrl + paramsGenresSeries, config);
-      setGenresList(response.data.genres);
+      const response = await axios.get(
+        baseUrl +
+          `/discover/tv?first_air_date_year=${year}&include_adult=false&include_null_first_air_dates=false&language=en-US&page=${page}&sort_by=${sortBy}&with_genres=${filterGenres}`,
+        config
+      );
+      setDataSerie(response.data.results);
       setLoading(false);
+      setTotalPages(response.data.total_pages);
     } catch (error) {
       console.error("Error:", error);
       setLoading(true);
@@ -57,21 +62,37 @@ export const SeriesContent = () => {
   }, []);
 
   useEffect(() => {
+    getDataSerie();
+  }, [filterGenres, year, sortBy]);
+
+  useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       getDataSerie();
     }, 750);
-  }, [filterGenres, page]);
+  }, [page]);
 
   return (
     <>
+      <FilterData
+        genresList={genresList}
+        setFilterGenres={setFilterGenres}
+        year={year}
+        setYear={setYear}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        setPage={setPage}
+      />
       {loading ? (
         <Loading />
       ) : (
         <>
-          <SeriesFilter genresList={genresList} />
           <SeriesResults dataSerie={dataSerie} />
-          <Pagination page={page} setPage={setPage} />
+          {dataSerie.length ? (
+            <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+          ) : (
+            <NoDataFound />
+          )}
         </>
       )}
     </>

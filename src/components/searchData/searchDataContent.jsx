@@ -2,7 +2,7 @@ import React from "react";
 import { MovieCard } from "../Cards/movieCard";
 import { SerieCard } from "../Cards/serieCard";
 import { PeopleCard } from "../Cards/peopleCard";
-import { NoDataFound } from "./noDataFound";
+import { NoDataFound } from "../utils/noDataFound";
 
 export const SearchDataContent = ({
   tabActive,

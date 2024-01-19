@@ -3,6 +3,7 @@ import axios from "axios";
 import { FilterData } from "../utils/filterData";
 import { MoviesResults } from "./moviesResults";
 import { Pagination } from "../utils/pagination";
+import { NoDataFound } from "../utils/noDataFound";
 import { Loading } from "../utils/loading";
 
 export const MoviesContent = () => {
@@ -12,14 +13,12 @@ export const MoviesContent = () => {
 
   const [genresList, setGenresList] = useState([]);
   const [dataMovie, setDataMovie] = useState([]);
-  const [searchedMovie, setSearchedMovie] = useState([]);
-  const [movieSearch, setMovieSearch] = useState("");
   const [filterGenres, setFilterGenres] = useState([]);
+  const [year, setYear] = useState("");
+  const [sortBy, setSortBy] = useState("popularity.desc");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
-
-  const moviesToShow = movieSearch === "" ? dataMovie : searchedMovie;
 
   const config = {
     headers: {
@@ -43,7 +42,7 @@ export const MoviesContent = () => {
     try {
       const response = await axios.get(
         baseUrl +
-          `/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${filterGenres}`,
+          `/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&primary_release_year=${year}&sort_by=${sortBy}&with_genres=${filterGenres}`,
         config
       );
       setDataMovie(response.data.results);
@@ -55,33 +54,6 @@ export const MoviesContent = () => {
     }
   };
 
-  const getSearchedMovie = async () => {
-    try {
-      const response = await axios.get(
-        baseUrl +
-          `/search/movie?query=${movieSearch}&include_adult=false&language=en-US&page=${page}`,
-        config
-      );
-      setSearchedMovie(response.data.results);
-      setTotalPages(response.data.total_pages);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error:", error);
-      setLoading(true);
-    }
-  };
-
-  const searchDataMovie = () => {
-    setLoading(true);
-    setTimeout(() => {
-      if (movieSearch === "") {
-        getDataMovie();
-      } else {
-        getSearchedMovie();
-      }
-    }, 750);
-  };
-
   useEffect(() => {
     setTimeout(() => {
       getDataMovie();
@@ -91,26 +63,35 @@ export const MoviesContent = () => {
 
   useEffect(() => {
     getDataMovie();
-  }, [filterGenres]);
+  }, [filterGenres, year, sortBy]);
 
   useEffect(() => {
-    searchDataMovie();
-  }, [page, movieSearch]);
+    setLoading(true);
+    setTimeout(() => {
+      getDataMovie();
+    }, 750);
+  }, [page]);
 
   return (
     <>
+      <FilterData
+        genresList={genresList}
+        setFilterGenres={setFilterGenres}
+        year={year}
+        setYear={setYear}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+      />
       {loading ? (
         <Loading />
       ) : (
         <>
-          <FilterData
-            genresList={genresList}
-            setFilterGenres={setFilterGenres}
-            movieSearch={movieSearch}
-            setMovieSearch={setMovieSearch}
-          />
-          <MoviesResults dataMovie={moviesToShow} />
-          <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+          <MoviesResults dataMovie={dataMovie} />
+          {dataMovie.length ? (
+            <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+          ) : (
+            <NoDataFound />
+          )}
         </>
       )}
     </>
