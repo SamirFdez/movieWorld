@@ -76,7 +76,8 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
           </div>
           <img
             alt={movieData.original_title}
-            className="lg:w-1/3 w-full lg:h-4/5 rounded hidden lg:flex items-center justify-center"
+            className={`lg:flex items-center justify-center rounded-lg w-1/3 object-fill hidden`}
+            style={{ height: "550px" }}
             src={`https://image.tmdb.org/t/p/w400${movieData.poster_path}`}
           />
           <img
