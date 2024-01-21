@@ -62,7 +62,10 @@ export const MoviesContent = () => {
   }, []);
 
   useEffect(() => {
-    getDataMovie();
+    setLoading(true);
+    setTimeout(() => {
+      getDataMovie();
+    }, 750);
   }, [filterGenres, year, sortBy]);
 
   useEffect(() => {

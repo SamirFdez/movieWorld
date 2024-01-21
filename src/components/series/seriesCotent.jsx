@@ -62,7 +62,10 @@ export const SeriesContent = () => {
   }, []);
 
   useEffect(() => {
-    getDataSerie();
+    setLoading(true);
+    setTimeout(() => {
+      getDataSerie();
+    }, 750);
   }, [filterGenres, year, sortBy]);
 
   useEffect(() => {
