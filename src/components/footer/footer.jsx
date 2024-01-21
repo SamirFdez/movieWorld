@@ -108,7 +108,7 @@ export const Footer = () => {
           <hr className="my-5 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
 
           <span className="block text-md text-gray-500 text-center dark:text-gray-400">
-            Designed & built by Samir Fernández.
+            Designed & built by Samir Fernández
           </span>
           <div className="flex mt-2 justify-center ">
             <a
