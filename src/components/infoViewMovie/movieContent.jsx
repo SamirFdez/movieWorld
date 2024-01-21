@@ -90,3 +90,4 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
     </>
   );
 };
+ 
