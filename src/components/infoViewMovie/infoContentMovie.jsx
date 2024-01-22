@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { MovieContent } from "./movieContent";
 import { CarouselMovieSimilar } from "./carouselMovieSimilar";
+import { DataReview } from "../utils/dataReview";
 import { Loading } from "../utils/loading";
 
 export const InfoContentMovie = () => {
@@ -13,11 +14,13 @@ export const InfoContentMovie = () => {
   const paramsMovieVideo = `/movie/${id}/videos?language=en-US`;
   const paramsMovieCredits = `/movie/${id}/credits?language=en-US`;
   const paramsMovieSimilar = `/movie/${id}/similar?language=en-US&page=1`;
+  const paramsMovieReview = `/movie/${id}/reviews?language=en-US&page=1`;
 
   const [movieData, setMovieData] = useState({});
   const [movieVideo, setMovieVideo] = useState([]);
   const [movieCredits, setMovieCredits] = useState([]);
   const [movieSimilar, setMovieSimilar] = useState([]);
+  const [movieReview, setMovieReview] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const config = {
@@ -71,12 +74,24 @@ export const InfoContentMovie = () => {
     }
   };
 
+  const getMovieReview = async () => {
+    try {
+      const response = await axios.get(baseUrl + paramsMovieReview, config);
+      setMovieReview(response.data.results);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
+      setLoading(true);
+    }
+  };
+
   useEffect(() => {
     setTimeout(() => {
       getMovieData();
       getMovieVideo();
       getMovieCredits();
       getMovieSimilar();
+      getMovieReview();
     }, 1000);
   }, []);
 
@@ -87,6 +102,7 @@ export const InfoContentMovie = () => {
       getMovieVideo();
       getMovieCredits();
       getMovieSimilar();
+      getMovieReview();
     }, 750);
   }, [id]);
 
@@ -102,6 +118,7 @@ export const InfoContentMovie = () => {
             movieCredits={movieCredits}
           />
           <CarouselMovieSimilar movieSimilar={movieSimilar} />
+          {/* <DataReview dataReviews={movieReview} /> */}
         </>
       )}
     </>
