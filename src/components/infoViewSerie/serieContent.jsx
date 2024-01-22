@@ -60,7 +60,6 @@ export const SerieContent = ({ serieData, serieVideo, serieCredits }) => {
           <img
             alt={serieData.original_title}
             className={`lg:flex items-center justify-center rounded-lg w-1/3 object-fill hidden`}
-            style={{ height: "550px" }}
             src={`https://image.tmdb.org/t/p/w400${serieData.poster_path}`}
           />
           <img

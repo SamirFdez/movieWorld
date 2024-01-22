@@ -77,7 +77,6 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
           <img
             alt={movieData.original_title}
             className={`lg:flex items-center justify-center rounded-lg w-1/3 object-fill hidden`}
-            style={{ height: "550px" }}
             src={`https://image.tmdb.org/t/p/w400${movieData.poster_path}`}
           />
           <img
@@ -90,4 +89,3 @@ export const MovieContent = ({ movieData, movieVideo, movieCredits }) => {
     </>
   );
 };
- 
