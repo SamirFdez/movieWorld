@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { SerieContent } from "./serieContent";
 import { CarouselSerieRecommendation } from "./carouselSerieRecommendation";
 import { AccordionSeason } from "./accordionSeason";
+import { DataReview } from "../utils/dataReview/dataReview";
 import { Loading } from "../utils/loading";
 
 export const InfoContentSerie = () => {
@@ -14,11 +15,13 @@ export const InfoContentSerie = () => {
   const paramsSerieVideo = `/tv/${id}/videos?language=en-US`;
   const paramsSerieCredits = `/tv/${id}/season/1/credits?language=en-US`;
   const paramsSerieRecommendation = `/tv/${id}/recommendations?language=en-US&page=1`;
+  const paramsSerieReview = `/tv/${id}/reviews?language=en-US&page=1`;
 
   const [serieData, setSerieData] = useState({});
   const [serieVideo, setSerieVideo] = useState([]);
   const [serieCredits, setSerieCredits] = useState([]);
   const [serieRecommendation, setSerieRecommendation] = useState([]);
+  const [serieReview, setSerieReview] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const config = {
@@ -75,12 +78,24 @@ export const InfoContentSerie = () => {
     }
   };
 
+  const getSerieReview = async () => {
+    try {
+      const response = await axios.get(baseUrl + paramsSerieReview, config);
+      setSerieReview(response.data.results);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
+      setLoading(true);
+    }
+  };
+
   useEffect(() => {
     setTimeout(() => {
       getSerieData();
       getSerieVideo();
       getSerieCredits();
       getSerieRecommendation();
+      getSerieReview();
     }, 1000);
   }, []);
 
@@ -91,6 +106,7 @@ export const InfoContentSerie = () => {
       getSerieVideo();
       getSerieCredits();
       getSerieRecommendation();
+      getSerieReview();
     }, 750);
   }, [id]);
 
@@ -105,10 +121,14 @@ export const InfoContentSerie = () => {
             serieVideo={serieVideo}
             serieCredits={serieCredits}
           />
-          <AccordionSeason idSerie={serieData?.id} seasonData={serieData?.seasons} />
+          <AccordionSeason
+            idSerie={serieData?.id}
+            seasonData={serieData?.seasons}
+          />
           <CarouselSerieRecommendation
             serieRecommendation={serieRecommendation}
           />
+          <DataReview dataReviews={serieReview} />
         </>
       )}
     </>

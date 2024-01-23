@@ -177,6 +177,27 @@ html {
 }
 
 /*--------------------------------------------------------------
+>>> DataReview Component
+----------------------------------------------------------------*/
+.dataReview {
+  max-height: 40em;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.dataReview::-webkit-scrollbar {
+  width: 2px;
+  border-radius: 2px;
+  /* background-color: #6B7280; */
+  background-color: transparent;
+}
+
+.dataReview::-webkit-scrollbar-thumb {
+  background-color: #1D4ED8;
+  border-radius: 2px;
+}
+
+/*--------------------------------------------------------------
 >>> Footer
 ----------------------------------------------------------------*/
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { MovieContent } from "./movieContent";
 import { CarouselMovieSimilar } from "./carouselMovieSimilar";
-import { DataReview } from "../utils/dataReview";
+import { DataReview } from "../utils/dataReview/dataReview";
 import { Loading } from "../utils/loading";
 
 export const InfoContentMovie = () => {
@@ -118,7 +118,7 @@ export const InfoContentMovie = () => {
             movieCredits={movieCredits}
           />
           <CarouselMovieSimilar movieSimilar={movieSimilar} />
-          {/* <DataReview dataReviews={movieReview} /> */}
+          <DataReview dataReviews={movieReview} />
         </>
       )}
     </>
