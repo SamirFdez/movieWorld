@@ -25,7 +25,7 @@ export const DataReview = ({ dataReviews }) => {
 
   return (
     <>
-      <div className="container p-5 pt-0 mx-auto">
+      <div className="container p-5 mx-auto">
         <div className="lg:w-4/5 mx-auto">
           <h3 className="text-3xl font-bold dark:text-white tracking-wider mb-4">
             Reviews
