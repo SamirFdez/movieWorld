@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DataReviewStars } from "./dataReviewStars";
+import dayjs from "dayjs";
 
 export const DataReview = ({ dataReviews }) => {
   const [dataReview, setDataReview] = useState([]);
@@ -81,7 +82,9 @@ export const DataReview = ({ dataReviews }) => {
                       )}
                     </div>
                     <div className="flex justify-end">
-                      <span className="text-gray-400">Feb 13, 2021</span>
+                      <span className="text-gray-400">
+                        {dayjs(reviews.created_at).format("MMM D, YYYY")}
+                      </span>
                     </div>
                   </div>
                 ))

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Carousel from "react-multi-carousel";
-import { carouselOptions } from "../../config/carouselOptions";
+import { carouselOptionsEspecial } from "../../config/carouselOptionsEspecial";
 
 export const CarouselPeopleSerieCredits = ({ peopleSerieCredits }) => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export const CarouselPeopleSerieCredits = ({ peopleSerieCredits }) => {
           <h3 className="text-3xl font-bold dark:text-white tracking-wider">
             Series
           </h3>
-          <Carousel {...carouselOptions}>
+          <Carousel {...carouselOptionsEspecial}>
             {peopleSerieCreditsFiltered
               ?.filter((movie) => movie.poster_path !== null)
               ?.map((seriesCredits, index) => (
