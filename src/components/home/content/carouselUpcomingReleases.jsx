@@ -7,7 +7,7 @@ export const CarouselUpcomingReleases = ({ goToInfoViewMovie }) => {
   const baseUrl = import.meta.env.VITE_APP_BASEURL;
   const auth = import.meta.env.VITE_APP_AUTH;
 
-  const [date, setDate] = useState("2024");
+  const [date, setDate] = useState(null);
   const [upComingReleases, setUpComingReleases] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,7 +49,9 @@ export const CarouselUpcomingReleases = ({ goToInfoViewMovie }) => {
   }, []);
 
   useEffect(() => {
-    getUpComingMovies();
+    if(date !== null) {
+      getUpComingMovies();
+    }
   }, [date]);
 
   return (
