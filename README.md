@@ -1,8 +1,12 @@
-# React + Vite
+# Movie World
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App that allows you to search for movies or series, see their reviews, the trailer of the movie or a related video, its actors, its reviews, among other things. It allows you to filter in different ways, it has a search engine by movies, series or actors. If it is a series, it shows you the seasons along with the chapters and a brief description. The purpose of this app was to show my skills in using APIs.
 
-Currently, two official plugins are available:
+## Stacks
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- HTML5
+- CCS3
+- Tailwind
+- JavaScript
+- React
+- API Rest
