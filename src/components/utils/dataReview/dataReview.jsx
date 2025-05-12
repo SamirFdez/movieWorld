@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { DataReviewStars } from "./dataReviewStars";
+import multiavatar from "@multiavatar/multiavatar";
 import dayjs from "dayjs";
 
 export const DataReview = ({ dataReviews }) => {
@@ -41,10 +42,11 @@ export const DataReview = ({ dataReviews }) => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <img
-                          src={`https://api.multiavatar.com/${reviews.id}.png`}
+                        <div
                           className="w-12 h-12 text-center rounded-full"
-                          alt=""
+                          dangerouslySetInnerHTML={{
+                            __html: multiavatar(reviews.id), // Generate SVG avatar using multiavatar
+                          }}
                         />
                         <h1 className="text-lg ml-1">{reviews.author}</h1>
                       </div>
